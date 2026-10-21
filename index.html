@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neko Roble Café · Cafetería temática de gatos</title>
+  <meta name="description" content="Neko Roble Café: cafetería artesanal y refugio felino en la Colonia Escalón, San Salvador. Café salvadoreño de Apaneca, postres horneados cada mañana y seis gatos adoptables que te harán ronronear.">
+  <meta name="theme-color" content="#3a281d">
+
+  <!-- Favicon: patita dibujada en SVG (sin archivos externos) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a281d'/%3E%3Cellipse cx='16' cy='21' rx='7' ry='5.5' fill='%23e6c884'/%3E%3Cellipse cx='7' cy='12' rx='3' ry='3.6' fill='%23e6c884'/%3E%3Cellipse cx='13' cy='8' rx='2.8' ry='3.4' fill='%23e6c884'/%3E%3Cellipse cx='19' cy='8' rx='2.8' ry='3.4' fill='%23e6c884'/%3E%3Cellipse cx='25' cy='12' rx='3' ry='3.6' fill='%23e6c884'/%3E%3C/svg%3E">
+
+  <!-- Tipografías de Google Fonts: Fraunces (títulos rústicos) + Nunito Sans (texto) + Special Elite (sello) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,800;1,6..12,400&family=Special+Elite&display=swap" rel="stylesheet">
+
+  <style>
+  /* =========================================================================
+     NEKO ROBLE CAFÉ — hoja de estilos única
+     Índice:
+       1. Variables de diseño (paleta rústica)
+       2. Reset y base accesible
+       3. Texturas (madera, papel kraft, lino) y decoraciones
+       4. Utilidades, tipografía y componentes reutilizables
+       5. Cabecera fija y navegación
+       6. Hero
+       7. Secciones: nosotros, gatitos, menú, reglas
+       8. Reservas, testimonios, contacto
+       9. Footer
+      10. Animaciones de aparición (scroll reveal)
+      11. Responsive (tablet y móvil)
+      12. Accesibilidad y movimiento reducido
+     ========================================================================= */
+
+  /* ---------- 1. Variables de diseño ---------------------------------------- */
+  :root {
+    /* Paleta rústica */
+    --madera-900: #241811;   /* madera muy oscura (footer) */
+    --madera-800: #3a281d;   /* madera oscura (cabecera, menú) */
+    --madera-700: #4a3527;   /* madera media */
+    --crema:      #f6ecdb;   /* papel crema */
+    --crema-2:    #efe0c9;   /* crema sombra */
+    --kraft:      #e6d3ae;   /* papel kraft */
+    --musgo:      #6b7f5e;   /* verde musgo */
+    --musgo-osc:  #4d5d42;   /* verde musgo profundo */
+    --terracota:  #c1663f;   /* terracota */
+    --terracota-osc: #9e4a29;
+    --dorado:     #c9a24b;   /* dorado envejecido */
+    --dorado-cl:  #e6c884;
+    --tinta:      #2b1d15;   /* texto sobre claro */
+    --texto:      #3d2c22;
+    --texto-suave: #6a5445;
+
+    /* Tipografías */
+    --fuente-titulo: "Fraunces", "Georgia", serif;
+    --fuente-texto: "Nunito Sans", system-ui, -apple-system, sans-serif;
+    --fuente-sello: "Special Elite", "Courier New", monospace;
+
+    /* Medidas */
+    --ancho: 1140px;
+    --cabecera-alto: 76px;
+    --radio-artesanal: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    --sombra-suave: 0 18px 40px -22px rgba(36, 24, 17, .75);
+
+    /* Texturas generadas con SVG (ruido fractal = grano de papel/lino) */
+    --grano-papel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- 2. Reset y base accesible ------------------------------------- */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    /* Deja espacio para la cabecera fija al saltar con anclas */
+    scroll-padding-top: calc(var(--cabecera-alto) + 12px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--fuente-texto);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--texto);
+    background-color: var(--madera-700);
+    /* Textura de vetas de madera hecha con degradados repetidos */
+    background-image:
+      repeating-linear-gradient(92deg, rgba(0,0,0,.10) 0 2px, rgba(255,255,255,0) 2px 7px),
+      repeating-linear-gradient(88deg, rgba(255,255,255,.035) 0 1px, rgba(255,255,255,0) 1px 15px),
+      radial-gradient(120% 60% at 50% 0%, rgba(230,200,132,.10), rgba(0,0,0,0) 60%),
+      linear-gradient(180deg, #4a3527, #3a281d 60%, #33241a);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  img, svg { max-width: 100%; display: block; }
+  h1, h2, h3, h4 { font-family: var(--fuente-titulo); line-height: 1.15; margin: 0 0 .6em; font-weight: 900; }
+  p { margin: 0 0 1em; }
+  a { color: inherit; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+
+  /* Anillo de foco visible y bonito en todo el sitio */
+  :focus-visible {
+    outline: 3px solid var(--dorado-cl);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Utilidad para lectores de pantalla */
+  .visually-hidden {
+    position: absolute !important; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* Enlace de salto para teclado */
+  .skip-link {
+    position: absolute; top: -60px; left: 16px; z-index: 200;
+    background: var(--dorado); color: var(--madera-900);
+    padding: .6rem 1rem; border-radius: 0 0 10px 10px;
+    font-weight: 800; text-decoration: none; transition: top .25s ease;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* ---------- 3. Texturas y decoraciones ------------------------------------ */
+  .contenedor { width: min(var(--ancho), 92%); margin-inline: auto; }
+
+  .seccion { position: relative; padding: clamp(64px, 9vw, 110px) 0; }
+
+  /* Fondos por sección */
+  .fondo-crema {
+    background-color: var(--crema);
+    background-image: var(--grano-papel);
+    background-blend-mode: multiply;
+    background-size: 260px 260px;
+    color: var(--texto);
+  }
+  .fondo-kraft {
+    background-color: var(--kraft);
+    background-image: var(--grano-papel);
+    background-blend-mode: multiply;
+    background-size: 260px 260px;
+    color: var(--texto);
+  }
+  .fondo-musgo {
+    background-color: var(--musgo-osc);
+    background-image: var(--grano-papel);
+    background-blend-mode: soft-light;
+    background-size: 260px 260px;
+    color: var(--crema);
+  }
+  .fondo-madera {
+    background-color: var(--madera-800);
+    background-image:
+      var(--grano-papel),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 3px, rgba(255,255,255,.02) 3px 9px);
+    background-blend-mode: overlay, normal;
+    background-size: 260px 260px, auto;
+    color: var(--crema);
+  }
+
+  /* Borde de papel rasgado entre secciones (SVG con color heredado) */
+  .borde-papel {
+    position: absolute; left: 0; right: 0; top: 0;
+    height: 34px; pointer-events: none; z-index: 3; overflow: hidden;
+  }
+  .borde-papel svg { width: 100%; height: 100%; transform: scaleY(-1); }
+  /* El color del borde = color de la sección anterior */
+  .borde-papel--crema { color: var(--crema); }
+  .borde-papel--kraft { color: var(--kraft); }
+  .borde-papel--musgo { color: var(--musgo-osc); }
+  .borde-papel--madera { color: var(--madera-800); }
+
+  /* Hoja decorativa de esquina (ramas dibujadas a mano) */
+  .hoja-esquina {
+    position: absolute; color: var(--musgo); opacity: .28;
+    width: clamp(90px, 12vw, 170px); pointer-events: none;
+  }
+  .hoja-esquina--izq { left: -14px; top: 26px; transform: rotate(-8deg); }
+  .hoja-esquina--der { right: -14px; bottom: 30px; transform: scaleX(-1) rotate(-8deg); }
+
+  /* Camino de patitas de gato */
+  .camino-patas {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    z-index: 0; opacity: .16;
+  }
+  .camino-patas .pata {
+    position: absolute; width: 26px; color: var(--dorado);
+  }
+
+  /* ---------- 4. Utilidades, tipografía y componentes ------------------------ */
+  .separador-texto { display: block; margin-inline: auto; color: var(--terracota); width: 120px; }
+
+  .antetitulo {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-family: var(--fuente-sello); letter-spacing: .12em;
+    text-transform: uppercase; font-size: .82rem;
+    color: var(--terracota); margin: 0 0 1rem;
+  }
+  .antetitulo svg { width: 18px; height: 18px; }
+  .sobre-oscuro .antetitulo, .fondo-madera .antetitulo, .fondo-musgo .antetitulo { color: var(--dorado-cl); }
+
+  .titulo-seccion {
+    font-size: clamp(1.9rem, 4.4vw, 3rem);
+    max-width: 18ch;
+    letter-spacing: -.01em;
+  }
+  .titulo-seccion em { font-style: italic; font-weight: 600; color: var(--terracota); }
+  .fondo-madera .titulo-seccion em, .fondo-musgo .titulo-seccion em { color: var(--dorado-cl); }
+
+  .intro-seccion { max-width: 62ch; font-size: 1.08rem; }
+  .fondo-madera .intro-seccion, .fondo-musgo .intro-seccion { color: #e9dcc7; }
+
+  .cabecera-seccion { margin-bottom: clamp(2rem, 5vw, 3.4rem); }
+
+  /* Botones estilo cartel de madera */
+  .boton {
+    display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+    padding: .9rem 1.6rem; text-decoration: none; cursor: pointer;
+    font-family: var(--fuente-titulo); font-weight: 600; font-size: 1.02rem;
+    border: 2px solid var(--madera-900); border-radius: var(--radio-artesanal);
+    background: linear-gradient(180deg, var(--dorado-cl), var(--dorado));
+    color: var(--madera-900);
+    box-shadow: 0 4px 0 rgba(36,24,17,.55);
+    transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+  }
+  .boton:hover { transform: translateY(-3px) rotate(-.6deg); box-shadow: 0 8px 0 rgba(36,24,17,.5); filter: brightness(1.04); }
+  .boton:active { transform: translateY(1px); box-shadow: 0 2px 0 rgba(36,24,17,.55); }
+  .boton svg { width: 20px; height: 20px; }
+
+  .boton--suave {
+    background: transparent; color: var(--crema);
+    border-color: var(--dorado-cl); box-shadow: 0 4px 0 rgba(36,24,17,.35);
+  }
+  .boton--suave:hover { background: rgba(230,200,132,.14); }
+
+  .boton--oscuro {
+    background: linear-gradient(180deg, var(--terracota), var(--terracota-osc));
+    color: #fff5e8; border-color: var(--madera-900);
+  }
+
+  .boton--peq { padding: .55rem 1.1rem; font-size: .95rem; }
+
+  /* Tarjeta artesanal genérica (borde irregular tipo boceto) */
+  .tarjeta {
+    background: var(--crema);
+    border: 2px solid rgba(43,29,21,.85);
+    border-radius: var(--radio-artesanal);
+    box-shadow: var(--sombra-suave);
+    position: relative;
+  }
+
+  /* Etiqueta tipo sello */
+  .sello {
+    display: inline-block; font-family: var(--fuente-sello); font-size: .78rem;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: .28rem .7rem; border: 2px solid currentColor;
+    border-radius: 3px; transform: rotate(-3deg);
+  }
+
+  /* ---------- 5. Cabecera fija y navegación --------------------------------- */
+  .cabecera {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    background: rgba(36, 24, 17, .82);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(230,200,132,.22);
+    transition: box-shadow .3s ease, background .3s ease, height .3s ease;
+  }
+  .cabecera--fija { background: rgba(28, 19, 13, .96); box-shadow: 0 10px 30px -18px #000; }
+
+  .cabecera__interior {
+    min-height: var(--cabecera-alto);
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+
+  .logo { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; color: var(--crema); }
+  .logo__icono { width: 40px; height: 40px; color: var(--dorado-cl); flex: none; transition: transform .4s ease; }
+  .logo:hover .logo__icono { transform: rotate(-8deg) scale(1.06); }
+  .logo__texto { font-family: var(--fuente-titulo); font-weight: 900; font-size: 1.18rem; line-height: 1.05; display: grid; }
+  .logo__texto em { font-style: italic; font-weight: 400; font-size: .78rem; letter-spacing: .32em; color: var(--dorado-cl); }
+
+  .nav__lista { display: flex; align-items: center; gap: clamp(.4rem, 1.6vw, 1.3rem); }
+  .nav__enlace {
+    position: relative; text-decoration: none; color: #ecdec8;
+    font-size: .98rem; font-weight: 600; padding: .45rem .2rem;
+    transition: color .2s ease;
+  }
+  .nav__enlace::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: .1rem; height: 6px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='6'%3E%3Cpath d='M1 4 Q 12 1 22 4 T 43 4 T 64 4 T 79 3' fill='none' stroke='%23c9a24b' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+    background-size: 80px 6px;
+    transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+  }
+  .nav__enlace:hover { color: var(--dorado-cl); }
+  .nav__enlace:hover::after,
+  .nav__enlace[aria-current="true"]::after { transform: scaleX(1); }
+  .nav__enlace[aria-current="true"] { color: var(--dorado-cl); }
+
+  /* Botón hamburguesa ( móvil ) */
+  .boton-menu {
+    display: none; width: 46px; height: 42px; cursor: pointer;
+    background: transparent; border: 2px solid rgba(230,200,132,.5);
+    border-radius: 10px; padding: 0; position: relative;
+  }
+  .boton-menu__linea {
+    position: absolute; left: 10px; right: 10px; height: 2.5px;
+    background: var(--dorado-cl); border-radius: 2px; transition: transform .3s ease, opacity .25s ease;
+  }
+  .boton-menu__linea:nth-child(1) { top: 12px; }
+  .boton-menu__linea:nth-child(2) { top: 19px; }
+  .boton-menu__linea:nth-child(3) { top: 26px; }
+  .boton-menu[aria-expanded="true"] .boton-menu__linea:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .boton-menu[aria-expanded="true"] .boton-menu__linea:nth-child(2) { opacity: 0; }
+  .boton-menu[aria-expanded="true"] .boton-menu__linea:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ---------- 6. Hero -------------------------------------------------------- */
+  .hero {
+    position: relative; min-height: 100svh;
+    display: flex; align-items: center;
+    padding: calc(var(--cabecera-alto) + 48px) 0 90px;
+    overflow: hidden; isolation: isolate;
+    color: var(--crema);
+  }
+
+  /* Fondo del hero: luces cálidas tipo "bokeh" de cafetería.
+     REEMPLAZAR POR FOTO REAL: sustituye background-image por tu imagen, p. ej.
+     background-image: url("img/hero-cafe.jpg");  y deja el velo oscuro de abajo. */
+  .hero__fondo {
+    position: absolute; inset: 0; z-index: -2;
+    background:
+      radial-gradient(circle at 12% 22%, rgba(230,200,132,.30), rgba(0,0,0,0) 34%),
+      radial-gradient(circle at 84% 18%, rgba(193,102,63,.36), rgba(0,0,0,0) 38%),
+      radial-gradient(circle at 70% 78%, rgba(107,127,94,.34), rgba(0,0,0,0) 42%),
+      radial-gradient(circle at 30% 88%, rgba(230,200,132,.20), rgba(0,0,0,0) 40%),
+      linear-gradient(180deg, #2f2117 0%, #45301f 45%, #33241a 100%);
+  }
+  .hero__fondo::after { /* velo para asegurar contraste del texto */
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(105deg, rgba(24,16,11,.88) 0%, rgba(24,16,11,.55) 52%, rgba(24,16,11,.25) 100%);
+  }
+
+  .hero__interior {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1.05fr .95fr;
+    gap: clamp(2rem, 5vw, 4rem); align-items: center; width: 100%;
+  }
+
+  .hero__chip {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: var(--fuente-sello); font-size: .8rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--dorado-cl);
+    border: 1.5px dashed rgba(230,200,132,.55); border-radius: 999px;
+    padding: .35rem .95rem; margin-bottom: 1.3rem;
+  }
+  .hero__chip svg { width: 15px; height: 15px; }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 7vw, 4.6rem);
+    line-height: 1.02; margin-bottom: .35em; letter-spacing: -.02em;
+    text-shadow: 0 3px 0 rgba(0,0,0,.35);
+  }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--dorado-cl); }
+
+  .hero__subrayado { width: min(340px, 70%); color: var(--terracota); margin-bottom: 1.4rem; }
+
+  .hero__eslogan { font-size: 1.14rem; max-width: 46ch; color: #ecdfc9; margin-bottom: 2rem; }
+  .hero__acciones { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+  .hero__datos {
+    display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; margin-top: 2.6rem;
+    padding-top: 1.6rem; border-top: 1px dashed rgba(230,200,132,.4);
+  }
+  .hero__dato { display: grid; gap: .1rem; }
+  .hero__dato strong { font-family: var(--fuente-titulo); font-size: 1.35rem; color: var(--dorado-cl); }
+  .hero__dato span { font-size: .86rem; color: #d8c8ae; }
+
+  /* Ilustración / foto del hero */
+  .hero__escena { position: relative; }
+  .hero__marco {
+    border: 3px solid rgba(230,200,132,.75);
+    border-radius: var(--radio-artesanal);
+    background: linear-gradient(160deg, rgba(246,236,219,.14), rgba(246,236,219,.03));
+    padding: clamp(.8rem, 2vw, 1.4rem);
+    box-shadow: var(--sombra-suave);
+    transform: rotate(1.4deg);
+  }
+  .hero__marco svg { width: 100%; height: auto; }
+  .hero__nota {
+    position: absolute; bottom: -18px; left: -10px;
+    background: var(--crema); color: var(--madera-900);
+    font-family: var(--fuente-sello); font-size: .82rem;
+    padding: .45rem .9rem; transform: rotate(-3deg);
+    border: 2px solid var(--madera-900); border-radius: var(--radio-artesanal);
+    box-shadow: var(--sombra-suave);
+  }
+
+  /* Patitas flotantes del hero */
+  .hero .camino-patas { opacity: .3; }
+
+  /* ---------- 7. Secciones: nosotros, gatitos, menú, reglas ----------------- */
+  .nosotros__interior {
+    display: grid; grid-template-columns: .95fr 1.05fr;
+    gap: clamp(2rem, 5vw, 4rem); align-items: center;
+  }
+  .nosotros__ilustracion {
+    position: relative; padding: 1rem;
+  }
+  .nosotros__ilustracion svg { width: 100%; height: auto; }
+
+  .pasos { display: grid; gap: 1.1rem; margin: 2rem 0 0; counter-reset: paso; }
+  .paso {
+    display: grid; grid-template-columns: auto 1fr; gap: 1rem;
+    background: rgba(255,255,255,.55);
+    border: 1.5px dashed rgba(43,29,21,.4);
+    border-radius: 22px 8px 22px 8px; padding: 1rem 1.2rem;
+  }
+  .paso__numero {
+    counter-increment: paso; width: 42px; height: 42px; flex: none;
+    display: grid; place-items: center; border-radius: 50%;
+    background: var(--musgo); color: var(--crema);
+    font-family: var(--fuente-titulo); font-weight: 900;
+    border: 2px solid var(--madera-900);
+  }
+  .paso__numero::before { content: counter(paso); }
+  .paso h3 { font-size: 1.08rem; margin: 0 0 .2rem; }
+  .paso p { margin: 0; font-size: .97rem; }
+
+  .datos-raya {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+  }
+  .dato {
+    text-align: center; padding: 1.4rem 1rem;
+    background: var(--madera-800); color: var(--crema);
+    border: 2px solid rgba(43,29,21,.9); border-radius: var(--radio-artesanal);
+    box-shadow: var(--sombra-suave);
+  }
+  .dato__valor { font-family: var(--fuente-titulo); font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 900; color: var(--dorado-cl); display: block; line-height: 1.1; }
+  .dato__texto { font-size: .88rem; color: #e2d4bc; }
+
+  /* --- Tarjetas de gatitos --- */
+  .rejilla-gatos {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.2rem, 3vw, 2rem);
+  }
+  .gato {
+    background: var(--crema); overflow: hidden;
+    border: 2px solid rgba(43,29,21,.85); border-radius: var(--radio-artesanal);
+    box-shadow: var(--sombra-suave);
+    display: flex; flex-direction: column;
+    transition: transform .35s cubic-bezier(.2,.8,.25,1), box-shadow .35s ease;
+  }
+  .gato:hover, .gato:focus-within {
+    transform: translateY(-10px) rotate(-.8deg);
+    box-shadow: 0 28px 46px -26px rgba(36,24,17,.85);
+  }
+  .gato__media {
+    position: relative; padding: 1.1rem 1.1rem 0;
+    background: radial-gradient(120% 100% at 50% 0%, var(--fondo-gato, #f0e3cc), rgba(255,255,255,0));
+  }
+  .gato__media svg { width: 100%; height: auto; transition: transform .45s ease; }
+  .gato:hover .gato__media svg { transform: scale(1.05) rotate(1deg); }
+  .gato__etiqueta {
+    position: absolute; top: .9rem; right: .8rem;
+    background: var(--terracota); color: #fff6ea;
+    border: 2px solid var(--madera-900);
+  }
+  .gato__etiqueta--adoptado { background: var(--musgo); }
+  .gato__cuerpo { padding: 1.2rem 1.35rem 1.5rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
+  .gato__nombre { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; margin: 0; font-size: 1.42rem; }
+  .gato__nombre span { font-family: var(--fuente-texto); font-weight: 700; font-size: .85rem; color: var(--texto-suave); white-space: nowrap; }
+  .gato__personalidad { font-size: .98rem; margin: 0; }
+  .gato__ficha { margin-top: auto; padding-top: .9rem; border-top: 1px dashed rgba(43,29,21,.3); display: grid; gap: .3rem; font-size: .86rem; }
+  .gato__ficha div { display: flex; gap: .5rem; }
+  .gato__ficha dt { font-weight: 800; color: var(--musgo-osc); min-width: 74px; }
+  .gato__ficha dd { margin: 0; color: var(--texto-suave); }
+
+  /* Ilustraciones de gatitos (SVG con trazo a mano, color por tarjeta) */
+  .gato-ilu { width: 100%; height: auto; }
+  .gato-ilu .p-cuerpo,
+  .gato-ilu .p-cabeza { fill: var(--pelaje, #d99a55); stroke: var(--tinta); stroke-width: 4; }
+  .gato-ilu .p-cola { fill: none; stroke: var(--pelaje, #d99a55); stroke-width: 20; stroke-linecap: round; }
+  .gato-ilu .p-oreja { fill: var(--pelaje, #d99a55); stroke: var(--tinta); stroke-width: 4; stroke-linejoin: round; }
+  .gato-ilu .p-oreja-int { fill: #e0907a; }
+  .gato-ilu .p-pata-del { fill: var(--hocico, #f4e3c4); stroke: var(--tinta); stroke-width: 4; }
+  .gato-ilu .p-piel-suave { fill: none; stroke: var(--raya, #a5672f); stroke-width: 4; stroke-linecap: round; opacity: .8; }
+  .gato-ilu .p-hocico { fill: var(--hocico, #f4e3c4); stroke: var(--tinta); stroke-width: 3.4; }
+  .gato-ilu .p-rayas { fill: none; stroke: var(--raya, #a5672f); stroke-width: 7; stroke-linecap: round; opacity: .85; }
+  .gato-ilu .p-ojos-cerr { fill: none; stroke: var(--tinta); stroke-width: 4.5; stroke-linecap: round; }
+  .gato-ilu .p-ojos-abi ellipse { fill: var(--tinta); }
+  .gato-ilu .p-nariz { fill: var(--terracota); }
+  .gato-ilu .p-boca { fill: none; stroke: var(--tinta); stroke-width: 3.2; stroke-linecap: round; }
+  .gato-ilu .p-bigotes { fill: none; stroke: var(--tinta); stroke-width: 2.4; stroke-linecap: round; opacity: .75; }
+  .gato-ilu .p-collar { fill: none; stroke: var(--terracota); stroke-width: 6; stroke-linecap: round; }
+  .gato-ilu .p-campana { fill: var(--dorado); stroke: var(--tinta); stroke-width: 2.4; }
+
+  .nota-gatos { margin: 2rem auto 0; max-width: 60ch; text-align: center; font-size: .95rem; color: var(--texto-suave); }
+
+  /* --- Menú --- */
+  .rejilla-menu {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.4rem, 3.5vw, 2.4rem);
+  }
+  .carta {
+    background: var(--crema); color: var(--texto);
+    border: 3px double rgba(43,29,21,.75);
+    border-radius: var(--radio-artesanal);
+    padding: clamp(1.4rem, 3vw, 2rem);
+    box-shadow: var(--sombra-suave); position: relative;
+  }
+  .carta::before { /* pequeñas orejas dibujadas arriba */
+    content: ""; position: absolute; top: -16px; left: 26px; width: 30px; height: 30px;
+    background: var(--crema); border-left: 3px double rgba(43,29,21,.75); border-top: 3px double rgba(43,29,21,.75);
+    transform: rotate(45deg); border-radius: 6px 0 0 0;
+  }
+  .carta__titulo { display: flex; align-items: center; gap: .7rem; margin-bottom: 1rem; }
+  .carta__titulo svg { width: 30px; height: 30px; color: var(--terracota); flex: none; }
+  .carta__titulo h3 { margin: 0; font-size: 1.5rem; }
+  .carta__lista { display: grid; gap: .85rem; }
+  /* Fila de un plato: nombre · línea punteada · precio */
+  .plato { display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem .5rem; }
+  .plato__nombre { font-weight: 800; }
+  .plato__precio { font-family: var(--fuente-titulo); font-weight: 900; color: var(--terracota-osc); white-space: nowrap; }
+  .plato__desc { flex-basis: 100%; font-size: .9rem; color: var(--texto-suave); margin: -.1rem 0 0; }
+  .plato__puntos {
+    flex: 1 1 28px; min-width: 28px;
+    border-bottom: 2px dotted rgba(43,29,21,.35);
+    margin: 0 .1rem .3rem;
+  }
+
+  .nota-carta {
+    margin-top: clamp(1.6rem, 4vw, 2.4rem); text-align: center;
+    font-family: var(--fuente-sello); font-size: .92rem; color: var(--dorado-cl);
+    display: flex; align-items: center; justify-content: center; gap: .6rem; flex-wrap: wrap;
+  }
+  .nota-carta svg { width: 20px; height: 20px; }
+
+  /* --- Reglas --- */
+  .rejilla-reglas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem 2rem; }
+  .regla {
+    display: grid; grid-template-columns: auto 1fr; gap: .9rem; align-items: start;
+    background: rgba(255,255,255,.6); padding: 1rem 1.15rem;
+    border: 1.5px dashed rgba(43,29,21,.35);
+    border-radius: 18px 6px 18px 6px;
+    transition: transform .25s ease, background .25s ease;
+  }
+  .regla:hover { transform: translateX(6px); background: rgba(255,255,255,.85); }
+  .regla svg { width: 26px; height: 26px; color: var(--terracota); margin-top: .15rem; }
+  .regla h3 { font-size: 1.05rem; margin: 0 0 .15rem; }
+  .regla p { margin: 0; font-size: .95rem; }
+
+  /* ---------- 8. Reservas, testimonios, contacto ---------------------------- */
+  .reservas__interior { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
+
+  .formulario {
+    background: var(--crema); color: var(--texto);
+    border: 2px solid var(--madera-900); border-radius: var(--radio-artesanal);
+    padding: clamp(1.5rem, 3.5vw, 2.4rem); box-shadow: var(--sombra-suave);
+  }
+  .formulario__fila { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
+  .campo { display: grid; gap: .38rem; margin-bottom: 1.1rem; }
+  .campo label { font-weight: 800; font-size: .93rem; }
+  .campo label span { color: var(--terracota-osc); }
+  .campo input, .campo select, .campo textarea {
+    width: 100%; padding: .72rem .9rem;
+    background: #fffaf1; border: 2px solid rgba(43,29,21,.55);
+    border-radius: 12px 4px 12px 4px; color: var(--tinta);
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .campo input:focus, .campo select:focus, .campo textarea:focus {
+    outline: none; border-color: var(--terracota);
+    box-shadow: 0 0 0 4px rgba(193,102,63,.18);
+  }
+  .campo textarea { resize: vertical; min-height: 88px; }
+  .campo__ayuda { font-size: .82rem; color: var(--texto-suave); }
+  .campo--checkbox { grid-template-columns: auto 1fr; align-items: start; gap: .7rem; }
+  .campo--checkbox input { width: 20px; height: 20px; margin-top: .2rem; accent-color: var(--terracota); }
+  .campo--checkbox label { font-weight: 600; font-size: .93rem; }
+
+  .aviso-exito {
+    display: none; margin-top: 1.2rem; padding: 1.1rem 1.2rem;
+    background: rgba(107,127,94,.16); border: 2px solid var(--musgo);
+    border-radius: 16px 6px 16px 6px; color: var(--musgo-osc);
+  }
+  .aviso-exito[data-visible="true"] { display: block; animation: aparecer .5s ease both; }
+  .aviso-exito strong { font-family: var(--fuente-titulo); font-size: 1.15rem; display: block; margin-bottom: .3rem; }
+
+  .reservas__aside { display: grid; gap: 1.1rem; }
+  .dato-lateral {
+    background: rgba(246,236,219,.1); border: 1.5px dashed rgba(230,200,132,.5);
+    border-radius: 18px 6px 18px 6px; padding: 1.1rem 1.25rem;
+  }
+  .dato-lateral h3 { display: flex; align-items: center; gap: .6rem; font-size: 1.08rem; margin: 0 0 .35rem; color: var(--dorado-cl); }
+  .dato-lateral h3 svg { width: 22px; height: 22px; }
+  .dato-lateral p { margin: 0; font-size: .95rem; color: #eadcc4; }
+
+  /* --- Testimonios --- */
+  .rejilla-testimonios { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
+  .testimonio {
+    background: var(--crema); border: 2px solid rgba(43,29,21,.8);
+    border-radius: var(--radio-artesanal); padding: 1.6rem 1.5rem;
+    box-shadow: var(--sombra-suave); display: flex; flex-direction: column; gap: .8rem;
+    transition: transform .3s ease;
+  }
+  .testimonio:hover { transform: translateY(-8px) rotate(.7deg); }
+  .estrellas { display: flex; gap: .18rem; color: var(--dorado); }
+  .estrellas svg { width: 19px; height: 19px; }
+  .testimonio blockquote { margin: 0; font-size: 1rem; font-style: italic; }
+  .testimonio__autor { display: flex; align-items: center; gap: .8rem; margin-top: auto; }
+  .avatar {
+    width: 46px; height: 46px; flex: none; border-radius: 50%;
+    display: grid; place-items: center; color: var(--crema);
+    font-family: var(--fuente-titulo); font-weight: 900; font-size: 1.1rem;
+    border: 2px solid var(--madera-900);
+  }
+  .testimonio__autor strong { display: block; font-size: .97rem; }
+  .testimonio__autor span { font-size: .82rem; color: var(--texto-suave); }
+
+  /* --- Contacto --- */
+  .contacto__interior { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
+  .lista-contacto { display: grid; gap: 1.15rem; }
+  .lista-contacto li { display: grid; grid-template-columns: auto 1fr; gap: .9rem; align-items: start; }
+  .lista-contacto svg { width: 24px; height: 24px; color: var(--dorado-cl); margin-top: .2rem; }
+  .lista-contacto strong { display: block; color: var(--dorado-cl); font-family: var(--fuente-titulo); font-size: 1.05rem; }
+  .lista-contacto span, .lista-contacto a { color: #e6d9c1; text-decoration: none; }
+  .lista-contacto a:hover { color: var(--dorado-cl); text-decoration: underline; }
+
+  .horario { width: 100%; border-collapse: collapse; margin-top: .4rem; font-size: .96rem; }
+  .horario caption { text-align: left; font-family: var(--fuente-titulo); color: var(--dorado-cl); font-size: 1.05rem; margin-bottom: .5rem; }
+  .horario th, .horario td { text-align: left; padding: .42rem .3rem; border-bottom: 1px dashed rgba(230,200,132,.28); color: #e6d9c1; font-weight: 400; }
+  .horario th { color: var(--crema); font-weight: 700; }
+
+  .redes { display: flex; gap: .8rem; margin-top: 1.6rem; }
+  .redes a {
+    width: 46px; height: 46px; display: grid; place-items: center;
+    border: 2px solid rgba(230,200,132,.55); border-radius: 14px 4px 14px 4px;
+    color: var(--dorado-cl); transition: transform .25s ease, background .25s ease, color .25s ease;
+  }
+  .redes a:hover { transform: translateY(-4px) rotate(-4deg); background: var(--dorado-cl); color: var(--madera-900); }
+  .redes svg { width: 22px; height: 22px; }
+
+  .mapa {
+    position: relative; min-height: 340px; height: 100%;
+    border: 3px solid rgba(230,200,132,.6); border-radius: var(--radio-artesanal);
+    overflow: hidden; background: #efe3cd;
+    box-shadow: var(--sombra-suave);
+  }
+  .mapa svg { width: 100%; height: 100%; display: block; }
+  .mapa__nota {
+    position: absolute; left: 12px; bottom: 12px; right: 12px;
+    background: rgba(43,29,21,.85); color: var(--crema);
+    font-size: .82rem; padding: .55rem .8rem; border-radius: 10px;
+  }
+
+  /* ---------- 9. Footer ------------------------------------------------------ */
+  .pie {
+    background: var(--madera-900); color: #d9cbb3;
+    padding: clamp(3rem, 6vw, 4.5rem) 0 1.6rem; position: relative;
+  }
+  .pie__rejilla { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.2rem; }
+  .pie h3 { font-size: 1.05rem; color: var(--dorado-cl); margin-bottom: .8rem; }
+  .pie ul { display: grid; gap: .5rem; }
+  .pie a { color: #d9cbb3; text-decoration: none; font-size: .95rem; }
+  .pie a:hover { color: var(--dorado-cl); text-decoration: underline; }
+  .pie__texto { font-size: .95rem; max-width: 34ch; }
+  .pie__abajo {
+    margin-top: 2.6rem; padding-top: 1.4rem;
+    border-top: 1px dashed rgba(230,200,132,.3);
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center;
+    font-size: .85rem; color: #b7a88f;
+  }
+  /* Crédito de autoría */
+  .pie__abajo strong {
+    color: var(--dorado-cl); font-family: var(--fuente-titulo);
+    font-weight: 600; font-size: .92rem; letter-spacing: .02em;
+  }
+
+  /* ---------- 10. Animaciones de aparición ---------------------------------- */
+  [data-reveal] {
+    opacity: 0; transform: translateY(26px);
+    transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.25,1);
+    transition-delay: calc(var(--d, 0) * 95ms);
+  }
+  [data-reveal="izquierda"] { transform: translateX(-32px); }
+  [data-reveal="derecha"] { transform: translateX(32px); }
+  [data-reveal].visible { opacity: 1; transform: none; }
+
+  @keyframes aparecer { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- 11. Responsive ------------------------------------------------- */
+  @media (max-width: 1024px) {
+    .hero__interior { grid-template-columns: 1fr; }
+    .hero__escena { max-width: 520px; }
+    .rejilla-gatos { grid-template-columns: repeat(2, 1fr); }
+    .nosotros__interior, .reservas__interior, .contacto__interior { grid-template-columns: 1fr; }
+    .pie__rejilla { grid-template-columns: 1fr 1fr; }
+    .rejilla-testimonios { grid-template-columns: 1fr; }
+    .datos-raya { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 860px) {
+    /* Menú móvil: se despliega desde la cabecera */
+    .boton-menu { display: block; }
+    .nav {
+      position: fixed; top: var(--cabecera-alto); left: 0; right: 0;
+      background: var(--madera-900); border-bottom: 2px solid rgba(230,200,132,.35);
+      padding: 1rem 6% 1.6rem;
+      transform: translateY(-140%); transition: transform .35s cubic-bezier(.2,.8,.25,1);
+      box-shadow: 0 20px 30px -20px #000;
+    }
+    .nav[data-abierta="true"] { transform: translateY(0); }
+    .nav__lista { flex-direction: column; align-items: stretch; gap: .2rem; }
+    .nav__enlace { display: block; padding: .8rem .4rem; font-size: 1.05rem; border-bottom: 1px dashed rgba(230,200,132,.2); }
+    .nav__enlace::after { display: none; }
+    .rejilla-menu { grid-template-columns: 1fr; }
+    .formulario__fila { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  @media (max-width: 620px) {
+    body { font-size: 1rem; }
+    .rejilla-gatos { grid-template-columns: 1fr; }
+    .rejilla-reglas { grid-template-columns: 1fr; }
+    .datos-raya { grid-template-columns: 1fr 1fr; }
+    .pie__rejilla { grid-template-columns: 1fr; gap: 1.8rem; }
+    .hero { min-height: auto; padding-bottom: 70px; }
+    .hero__datos { gap: 1rem 1.4rem; }
+    .cabecera-seccion { text-align: center; }
+    .titulo-seccion, .intro-seccion { margin-inline: auto; }
+  }
+
+  /* ---------- 12. Accesibilidad: movimiento reducido ------------------------ */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .001ms !important;
+    }
+    [data-reveal] { opacity: 1; transform: none; }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       SPRITE DE ICONOS (SVG inline con trazo a mano)
+       Se reutilizan con <use href="#i-..."> y se colorean con "color"
+       ============================================================ -->
+  <svg class="sprites" aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;overflow:hidden">
+    <!-- Patita de gato -->
+    <symbol id="i-pata" viewBox="0 0 32 32">
+      <ellipse cx="16" cy="21.5" rx="7.6" ry="6"/>
+      <ellipse cx="6.2" cy="12.5" rx="3" ry="3.8" transform="rotate(-18 6.2 12.5)"/>
+      <ellipse cx="12.4" cy="7.6" rx="2.9" ry="3.7"/>
+      <ellipse cx="19.6" cy="7.6" rx="2.9" ry="3.7"/>
+      <ellipse cx="25.8" cy="12.5" rx="3" ry="3.8" transform="rotate(18 25.8 12.5)"/>
+    </symbol>
+
+    <!-- Taza de café humeante -->
+    <symbol id="i-taza" viewBox="0 0 44 40">
+      <path d="M6 16h25v9a9 9 0 0 1-9 9h-7a9 9 0 0 1-9-9z"/>
+      <path d="M31 19h4.5a5.5 5.5 0 0 1 0 11H31" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M13 11c0-3.2 3-3 3-6.2M21 11c0-3.2 3-3 3-6.2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Grano de café -->
+    <symbol id="i-grano" viewBox="0 0 22 28">
+      <ellipse cx="11" cy="14" rx="8" ry="11.5" transform="rotate(12 11 14)"/>
+      <path d="M13 4c-4 5-4.5 14-1.5 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Rama con hojas -->
+    <symbol id="i-rama" viewBox="0 0 150 54">
+      <path d="M4 48C36 44 72 32 104 12c12-8 26-9 42-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+      <ellipse cx="34" cy="30" rx="10" ry="5.5" transform="rotate(-28 34 30)"/>
+      <ellipse cx="56" cy="22" rx="9" ry="5" transform="rotate(-14 56 22)"/>
+      <ellipse cx="76" cy="30" rx="9" ry="5" transform="rotate(28 76 30)"/>
+      <ellipse cx="98" cy="14" rx="9" ry="5" transform="rotate(-24 98 14)"/>
+      <ellipse cx="122" cy="8" rx="8" ry="4.5" transform="rotate(-10 122 8)"/>
+    </symbol>
+
+    <!-- Corazón -->
+    <symbol id="i-corazon" viewBox="0 0 24 24">
+      <path d="M12 21C4 15.4 2.2 10.4 5 6.8 7.3 3.8 10.9 4.8 12 7.3 13.1 4.8 16.7 3.8 19 6.8c2.8 3.6 1 8.6-7 14.2z"/>
+    </symbol>
+
+    <!-- Estrella -->
+    <symbol id="i-estrella" viewBox="0 0 24 24">
+      <path d="M12 2.4l2.9 6.1 6.6 1-4.8 4.7 1.2 6.7L12 17.7l-5.9 3.2 1.2-6.7-4.8-4.7 6.6-1z"/>
+    </symbol>
+
+    <!-- Cara de gato (logo) -->
+    <symbol id="i-gato" viewBox="0 0 44 40">
+      <path d="M8 16 6 4l11 6.6z"/><path d="M36 16 38 4l-11 6.6z"/>
+      <path d="M22 8c9.4 0 16 6.6 16 15S31 37 22 37 6 31.4 6 23 12.6 8 22 8z"/>
+      <path d="M15 21.5c1.6-2 3.4-2 5 0M24 21.5c1.6-2 3.4-2 5 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".35"/>
+      <path d="M22 26v2.4M22 28.4c-1.6 2-4 1.6-5 .2M22 28.4c1.6 2 4 1.6 5 .2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".35"/>
+    </symbol>
+
+    <!-- Ubicación -->
+    <symbol id="i-pin" viewBox="0 0 24 24">
+      <path d="M12 22s7.5-7.2 7.5-12.4A7.5 7.5 0 0 0 4.5 9.6C4.5 14.8 12 22 12 22z" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="12" cy="9.6" r="2.8"/>
+    </symbol>
+
+    <!-- Reloj -->
+    <symbol id="i-reloj" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 7v5.4l3.6 2.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Teléfono -->
+    <symbol id="i-tel" viewBox="0 0 24 24">
+      <path d="M6.5 3h3l1.6 4.2-2.1 1.6a12 12 0 0 0 6.2 6.2l1.6-2.1L21 14.5v3c0 1.9-1.6 3.5-3.5 3.4C9.8 20.4 3.6 14.2 3 6.5 2.9 4.6 4.6 3 6.5 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Sobre / email -->
+    <symbol id="i-mail" viewBox="0 0 24 24">
+      <rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M3.5 7l8.5 6.5L20.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Personas -->
+    <symbol id="i-personas" viewBox="0 0 24 24">
+      <circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c.6-3.6 3.2-5.6 6.2-5.6s5.6 2 6.2 5.6"/>
+      <circle cx="17.4" cy="9" r="2.6"/><path d="M15.6 14.8c2.8-.6 5.2 1.2 5.8 4.4"/>
+    </symbol>
+
+    <!-- Instagram -->
+    <symbol id="i-insta" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="18" height="18" rx="5.4" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="17.2" cy="6.8" r="1.3"/>
+    </symbol>
+
+    <!-- Facebook -->
+    <symbol id="i-face" viewBox="0 0 24 24">
+      <path d="M14.8 21v-7.4h2.6l.5-3h-3.1V8.7c0-.9.3-1.6 1.7-1.6h1.5V4.4c-.6-.1-1.6-.2-2.6-.2-2.6 0-4.3 1.5-4.3 4.3v2.1H9v3h2.1V21z"/>
+    </symbol>
+
+    <!-- TikTok -->
+    <symbol id="i-tiktok" viewBox="0 0 24 24">
+      <path d="M14.2 3c.4 2.4 1.9 3.9 4.3 4.2v2.9c-1.5 0-2.9-.5-4.3-1.4v5.9c0 3.5-2.6 5.9-5.7 5.9S2.8 18 2.8 14.6c0-3.3 2.5-5.8 5.9-5.6v3c-1.6-.3-2.9.7-2.9 2.5 0 1.5 1.1 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3z"/>
+    </symbol>
+
+    <!-- Check -->
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="M4 12.8l5 5L20 6.4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Corchete decorativo / firma -->
+    <symbol id="i-firma" viewBox="0 0 160 16">
+      <path d="M2 10c14-8 28 6 42-1s26 6 40-1 26 6 40-1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="150" cy="6" r="3"/>
+    </symbol>
+  </svg>
+
+  <!-- Enlace de salto para navegación por teclado -->
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- ============================================================
+       1. CABECERA FIJA
+       ============================================================ -->
+  <header class="cabecera" id="cabecera">
+    <div class="cabecera__interior contenedor">
+      <a class="logo" href="#inicio" aria-label="Neko Roble Café, ir al inicio">
+        <svg class="logo__icono" aria-hidden="true"><use href="#i-gato"></use></svg>
+        <span class="logo__texto">Neko Roble<em>Café</em></span>
+      </a>
+
+      <button class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="nav-principal">
+        <span class="boton-menu__linea"></span>
+        <span class="boton-menu__linea"></span>
+        <span class="boton-menu__linea"></span>
+        <span class="visually-hidden">Abrir el menú de navegación</span>
+      </button>
+
+      <nav class="nav" id="nav-principal" aria-label="Navegación principal">
+        <ul class="nav__lista">
+          <li><a class="nav__enlace" href="#inicio">Inicio</a></li>
+          <li><a class="nav__enlace" href="#gatitos">Nuestros gatitos</a></li>
+          <li><a class="nav__enlace" href="#menu">Menú</a></li>
+          <li><a class="nav__enlace" href="#reservas">Reservas</a></li>
+          <li><a class="nav__enlace" href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ============================================================
+         2. HERO
+         ============================================================ -->
+    <section class="hero" id="inicio">
+      <!-- FONDO: aquí va la fotografía del local.
+           REEMPLAZAR: en el CSS, .hero__fondo → background-image: url("img/hero-cafe.jpg"); -->
+      <div class="hero__fondo" aria-hidden="true"></div>
+
+      <!-- Patitas decorativas flotantes -->
+      <div class="camino-patas" aria-hidden="true">
+        <svg class="pata" style="left:6%;top:22%;transform:rotate(-18deg)" aria-hidden="true"><use href="#i-pata"></use></svg>
+        <svg class="pata" style="left:11%;top:38%;transform:rotate(12deg)" aria-hidden="true"><use href="#i-pata"></use></svg>
+        <svg class="pata" style="left:48%;top:12%;transform:rotate(-32deg);width:20px" aria-hidden="true"><use href="#i-pata"></use></svg>
+        <svg class="pata" style="left:88%;top:62%;transform:rotate(24deg)" aria-hidden="true"><use href="#i-pata"></use></svg>
+        <svg class="pata" style="left:76%;top:84%;transform:rotate(-8deg);width:22px" aria-hidden="true"><use href="#i-pata"></use></svg>
+      </div>
+
+      <div class="hero__interior contenedor">
+        <div class="hero__texto">
+          <p class="hero__chip">
+            <svg aria-hidden="true"><use href="#i-pata"></use></svg>
+            Cafetería felina · Colonia Escalón, San Salvador · Desde 2019
+          </p>
+
+          <h1 data-reveal>Un café con <em>ronroneos</em> y una horchata fría incluido</h1>
+
+          <svg class="hero__subrayado" viewBox="0 0 340 14" aria-hidden="true">
+            <path d="M3 9c30-7 62 4 94-2s60 5 92-2 62 6 88-1" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+
+          <p class="hero__eslogan" data-reveal style="--d:1">
+            En Neko Roble Café el café se sirve lento, los postres se hornean cada mañana
+            y la compañía viene en cuatro patas. Ven a conocernos: aquí siempre hay una silla
+            libre… y un gato que la ocupará antes que tú.
+          </p>
+
+          <div class="hero__acciones" data-reveal style="--d:2">
+            <a class="boton" href="#reservas">
+              <svg aria-hidden="true"><use href="#i-corazon"></use></svg>
+              Reserva tu mesa
+            </a>
+            <a class="boton boton--suave" href="#gatitos">Ver a los gatitos</a>
+          </div>
+
+          <dl class="hero__datos" data-reveal style="--d:3">
+            <div class="hero__dato"><dt class="visually-hidden">Gatos residentes</dt><dd style="margin:0"><strong>6</strong><span> gatitos residentes</span></dd></div>
+            <div class="hero__dato"><dt class="visually-hidden">Adopciones</dt><dd style="margin:0"><strong>127</strong><span> adopciones logradas</span></dd></div>
+            <div class="hero__dato"><dt class="visually-hidden">Valoración</dt><dd style="margin:0"><strong>4,9★</strong><span> de 312 reseñas</span></dd></div>
+          </dl>
+        </div>
+
+        <div class="hero__escena" data-reveal="derecha" style="--d:2">
+          <div class="hero__marco">
+            <!-- ILUSTRACIÓN DE EJEMPLO.
+                 REEMPLAZAR POR FOTO REAL: borra este <svg> y usa
+                 <img src="img/gato-en-la-barra.jpg" alt="Gato tumbado junto a una taza de café en la barra de madera"> -->
+            <svg viewBox="0 0 460 360" role="img" aria-label="Ilustración: un gato atigrado tumbado junto a una taza humeante de café sobre una mesa de madera">
+              <defs>
+                <linearGradient id="taza" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#f6ecdb"/><stop offset="1" stop-color="#e2d0ae"/>
+                </linearGradient>
+              </defs>
+              <!-- mesa -->
+              <rect x="0" y="272" width="460" height="88" fill="#6b4a30"/>
+              <path d="M0 292h460M0 322h460M0 350h460" stroke="#5a3d27" stroke-width="4"/>
+              <path d="M0 272h460" stroke="#8a6242" stroke-width="6"/>
+              <!-- taza -->
+              <g transform="translate(48 150)">
+                <ellipse cx="72" cy="126" rx="66" ry="12" fill="#000" opacity=".18"/>
+                <path d="M24 34h96v58a34 34 0 0 1-34 34H58a34 34 0 0 1-34-34z" fill="url(#taza)" stroke="#2b1d15" stroke-width="5"/>
+                <path d="M120 48h16a22 22 0 0 1 0 44h-16" fill="none" stroke="#2b1d15" stroke-width="6" stroke-linecap="round"/>
+                <ellipse cx="72" cy="34" rx="48" ry="11" fill="#c1663f" stroke="#2b1d15" stroke-width="5"/>
+                <path d="M52 18c0-14 12-14 12-28M84 18c0-14 12-14 12-28" fill="none" stroke="#f6ecdb" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+              </g>
+              <!-- gato atigrado tumbado -->
+              <g transform="translate(196 92)">
+                <!-- cola -->
+                <path d="M204 158c46 6 58-28 30-46" fill="none" stroke="#c98d4e" stroke-width="26" stroke-linecap="round"/>
+                <path d="M226 132c10-6 14-14 12-24" fill="none" stroke="#8a5a2b" stroke-width="8" stroke-linecap="round"/>
+                <!-- cuerpo -->
+                <ellipse cx="120" cy="152" rx="108" ry="52" fill="#c98d4e" stroke="#2b1d15" stroke-width="5"/>
+                <path d="M74 116c8 14 8 34 0 48M104 110c8 16 8 40 0 56M136 112c8 15 8 37 0 50" fill="none" stroke="#8a5a2b" stroke-width="7" stroke-linecap="round"/>
+                <!-- patas -->
+                <path d="M56 190c-14 2-24 6-28 12 22 8 54 8 78 0-6-8-26-14-50-12z" fill="#f0dcb8" stroke="#2b1d15" stroke-width="5" stroke-linejoin="round"/>
+                <!-- cabeza -->
+                <g transform="translate(0 -18)">
+                  <path d="M18 66 8 22l40 24z" fill="#c98d4e" stroke="#2b1d15" stroke-width="5" stroke-linejoin="round"/>
+                  <path d="M112 66 122 22l-40 24z" fill="#c98d4e" stroke="#2b1d15" stroke-width="5" stroke-linejoin="round"/>
+                  <path d="M22 58 18 34l20 14zM108 58l4-24-20 14z" fill="#e0907a"/>
+                  <circle cx="65" cy="76" r="50" fill="#c98d4e" stroke="#2b1d15" stroke-width="5"/>
+                  <path d="M65 32v-12M52 34l-6-12M78 34l6-12" stroke="#8a5a2b" stroke-width="6" stroke-linecap="round"/>
+                  <ellipse cx="65" cy="96" rx="30" ry="22" fill="#f0dcb8"/>
+                  <!-- ojos cerrados (felices) -->
+                  <path d="M42 72c5-7 13-7 18 0M70 72c5-7 13-7 18 0" fill="none" stroke="#2b1d15" stroke-width="5" stroke-linecap="round"/>
+                  <path d="M65 88v6" stroke="#2b1d15" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M65 94c-4 6-11 6-14 1M65 94c4 6 11 6 14 1" fill="none" stroke="#2b1d15" stroke-width="4" stroke-linecap="round"/>
+                  <ellipse cx="65" cy="88" rx="5" ry="4" fill="#c1663f"/>
+                  <!-- bigotes -->
+                  <path d="M36 88 8 82M36 96 10 98M94 88l28-6M94 96l26 2" stroke="#2b1d15" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+                </g>
+                <!-- patitas delanteras -->
+                <path d="M84 186c0-12 6-18 14-18s14 6 14 18" fill="#f0dcb8" stroke="#2b1d15" stroke-width="5"/>
+              </g>
+              <!-- granos de café y hojas sueltas -->
+              <g fill="#4d3220" opacity=".9">
+                <ellipse cx="30" cy="330" rx="9" ry="6" transform="rotate(-20 30 330)"/>
+                <ellipse cx="392" cy="338" rx="9" ry="6" transform="rotate(15 392 338)"/>
+                <ellipse cx="352" cy="318" rx="8" ry="5" transform="rotate(-8 352 318)"/>
+              </g>
+              <g fill="#6b7f5e">
+                <path d="M410 262c10-14 24-16 34-10-4 14-18 20-34 10z"/>
+                <path d="M14 250c-10-12-6-24 2-28 10 8 10 22-2 28z"/>
+              </g>
+            </svg>
+          </div>
+          <p class="hero__nota">Mochi supervisa la calidad ☕</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. SOBRE NOSOTROS
+         ============================================================ -->
+    <section class="seccion fondo-crema" id="nosotros" aria-labelledby="titulo-nosotros">
+      <div class="borde-papel borde-papel--madera" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,60 V24 L60,30 L120,16 L180,34 L240,20 L300,28 L360,14 L420,32 L480,24 L540,36 L600,18 L660,26 L720,12 L780,30 L840,22 L900,34 L960,16 L1020,28 L1080,20 L1140,32 L1200,14 L1260,26 L1320,24 L1380,30 L1440,20 V60 Z"/></svg>
+      </div>
+
+      <svg class="hoja-esquina hoja-esquina--izq" aria-hidden="true"><use href="#i-rama"></use></svg>
+
+      <div class="contenedor">
+        <div class="nosotros__interior">
+          <div class="nosotros__ilustracion" data-reveal="izquierda">
+            <!-- ILUSTRACIÓN: taza, hojas y patita.
+                 REEMPLAZAR POR FOTO: sustituye este <svg> por
+                 <img src="img/equipo-cafe.jpg" alt="Lina y Marcos preparando café tras la barra de madera"> -->
+            <svg viewBox="0 0 420 380" role="img" aria-label="Ilustración: una gran taza de café con hojas, granos de café y una patita de gato alrededor">
+              <ellipse cx="210" cy="200" rx="170" ry="150" fill="#efe0c9" stroke="#2b1d15" stroke-width="3" stroke-dasharray="14 10"/>
+              <g transform="translate(110 96)">
+                <path d="M30 60h150v90a60 60 0 0 1-60 60H90a60 60 0 0 1-60-60z" fill="#c1663f" stroke="#2b1d15" stroke-width="6"/>
+                <path d="M180 78h22a34 34 0 0 1 0 68h-22" fill="none" stroke="#2b1d15" stroke-width="7" stroke-linecap="round"/>
+                <ellipse cx="105" cy="60" rx="75" ry="16" fill="#f6ecdb" stroke="#2b1d15" stroke-width="6"/>
+                <ellipse cx="105" cy="60" rx="56" ry="10" fill="#6b4a30"/>
+                <path d="M70 34c0-20 16-20 16-40M105 30c0-20 16-20 16-40M140 34c0-20 16-20 16-40" fill="none" stroke="#c9a24b" stroke-width="6" stroke-linecap="round"/>
+                <!-- patita en la taza -->
+                <g transform="translate(64 96) scale(1.5)" fill="#f0dcb8" stroke="#2b1d15" stroke-width="2.6">
+                  <ellipse cx="16" cy="21.5" rx="7.6" ry="6"/><ellipse cx="6.2" cy="12.5" rx="3" ry="3.8"/><ellipse cx="12.4" cy="7.6" rx="2.9" ry="3.7"/><ellipse cx="19.6" cy="7.6" rx="2.9" ry="3.7"/><ellipse cx="25.8" cy="12.5" rx="3" ry="3.8"/>
+                </g>
+              </g>
+              <g color="#4d5d42" fill="currentColor">
+                <ellipse cx="52" cy="80" rx="22" ry="10" transform="rotate(-30 52 80)"/>
+                <ellipse cx="86" cy="52" rx="18" ry="8" transform="rotate(-12 86 52)"/>
+                <ellipse cx="360" cy="96" rx="20" ry="9" transform="rotate(28 360 96)"/>
+                <ellipse cx="336" cy="300" rx="20" ry="9" transform="rotate(-24 336 300)"/>
+              </g>
+              <g fill="#5a3d27">
+                <ellipse cx="46" cy="300" rx="14" ry="9" transform="rotate(-18 46 300)"/>
+                <ellipse cx="86" cy="336" rx="13" ry="8" transform="rotate(12 86 336)"/>
+                <ellipse cx="374" cy="238" rx="13" ry="8" transform="rotate(-6 374 238)"/>
+              </g>
+              <path d="M40 240c-16-12-12-30 0-34 12 10 12 26 0 34z" fill="#6b7f5e"/>
+            </svg>
+          </div>
+
+          <div data-reveal="derecha">
+            <p class="antetitulo">
+              <svg aria-hidden="true"><use href="#i-taza"></use></svg> Sobre nosotros
+            </p>
+            <h2 class="titulo-seccion" id="titulo-nosotros">Empezó con un rescate y una <em>cafetera vieja</em></h2>
+            <p>
+              En 2019, Lina y Marcos encontraron a una gatita naranja temblando bajo el roble de la
+              calle. Le pusieron <strong>Mochi</strong>, le dieron de comer y… no se fue. Tampoco se fue
+              cuando abrieron la cafetería en el local de al lado, ni cuando los vecinos empezaron a
+              pasar «solo a ver a la gata» y acabaron pidiendo un segundo café.
+            </p>
+            <p>
+              Hoy Neko Roble Café es <strong>cafetería de especialidad</strong> (tostamos nuestro grano de Café de Apaneca)
+              dos calles de aquí) y <strong>refugio de paso</strong>: cada gatito que ves ronroneando
+              aquí busca casa, y nosotros solo pedimos que la adopción sea consciente.
+            </p>
+            <p>
+              Nuestra filosofía cabe en un post-it pegado a la cafetera: <em>«Si el gato no quiere,
+              no hay show.»</em> Nada de forzar caricias ni de espectáculo: aquí el bienestar felino
+              manda y el café llega caliente.
+            </p>
+
+            <h3 style="font-size:1.2rem;margin-top:1.8rem">¿Cómo funciona la convivencia?</h3>
+            <ol class="pasos">
+              <li class="paso">
+                <span class="paso__numero" aria-hidden="true"></span>
+                <div>
+                  <h3>Reserva tu pase</h3>
+                  <p>Aforo reducido (máximo 8 personas) para que los gatos sigan mandando en su espacio.</p>
+                </div>
+              </li>
+              <li class="paso">
+                <span class="paso__numero" aria-hidden="true"></span>
+                <div>
+                  <h3>Manos limpias, voz bajita</h3>
+                  <p>Te lavas las manos a la entrada, bajas el volumen y dejas que ellos decidan cuándo acercarse.</p>
+                </div>
+              </li>
+              <li class="paso">
+                <span class="paso__numero" aria-hidden="true"></span>
+                <div>
+                  <h3>Pide, siéntate, ronronea</h3>
+                  <p>Traemos el café, tú eliges rincón y… suele haber un gato que se apunta a la sobremesa.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Cifras del local -->
+        <dl class="datos-raya">
+          <div class="dato" data-reveal style="--d:0"><dd style="margin:0"><span class="dato__valor" data-contador="127">0</span><span class="dato__texto">gatos adoptados</span></dd></div>
+          <div class="dato" data-reveal style="--d:1"><dd style="margin:0"><span class="dato__valor" data-contador="6">0</span><span class="dato__texto">residentes felinos</span></dd></div>
+          <div class="dato" data-reveal style="--d:2"><dd style="margin:0"><span class="dato__valor" data-contador="7">0</span><span class="dato__texto">años sirviendo tazas</span></dd></div>
+          <div class="dato" data-reveal style="--d:3"><dd style="margin:0"><span class="dato__valor" data-contador="49" data-decimales="1">0</span><span class="dato__texto">sobre 5 de valoración</span></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. NUESTROS GATITOS
+         ============================================================ -->
+    <section class="seccion fondo-kraft" id="gatitos" aria-labelledby="titulo-gatitos">
+      <div class="borde-papel borde-papel--crema" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,60 V24 L60,30 L120,16 L180,34 L240,20 L300,28 L360,14 L420,32 L480,24 L540,36 L600,18 L660,26 L720,12 L780,30 L840,22 L900,34 L960,16 L1020,28 L1080,20 L1140,32 L1200,14 L1260,26 L1320,24 L1380,30 L1440,20 V60 Z"/></svg>
+      </div>
+
+      <div class="camino-patas" aria-hidden="true">
+        <svg class="pata" style="right:5%;top:16%;transform:rotate(24deg)" aria-hidden="true"><use href="#i-pata"></use></svg>
+        <svg class="pata" style="right:9%;top:30%;transform:rotate(-10deg);width:22px" aria-hidden="true"><use href="#i-pata"></use></svg>
+        <svg class="pata" style="left:4%;bottom:12%;transform:rotate(14deg)" aria-hidden="true"><use href="#i-pata"></use></svg>
+      </div>
+
+      <div class="contenedor">
+        <header class="cabecera-seccion">
+          <p class="antetitulo" data-reveal>
+            <svg aria-hidden="true"><use href="#i-pata"></use></svg> Nuestros gatitos
+          </p>
+          <h2 class="titulo-seccion" id="titulo-gatitos" data-reveal style="--d:1">Seis motivos para <em>ronronear</em></h2>
+          <p class="intro-seccion" data-reveal style="--d:2">
+            Todos llegaron de la calle o de familias que no podían cuidarlos. Están vacunados,
+            esterilizados, microchipados y con un talento extraordinario para ocupar tu silla.
+            Elige al que te mire: ellos también eligen.
+          </p>
+        </header>
+
+        <div class="rejilla-gatos">
+
+          <!-- GATO 1 · Mochi
+               FOTO: sustituye el <svg> por
+               <img src="img/mochi.jpg" alt="Mochi, gata naranja y crema, tumbada en la barra del café"> -->
+          <article class="gato" data-reveal style="--d:0;--pelaje:#d99a55;--raya:#a5672f;--fondo-gato:#f6e7c9">
+            <div class="gato__media">
+              <span class="sello gato__etiqueta">Adoptable</span>
+              <svg class="gato-ilu" viewBox="0 0 200 180" role="img" aria-label="Ilustración de Mochi, gata atigrada naranja y crema">
+                <path class="p-cola" d="M148 140c30 6 38-18 18-30"/>
+                <ellipse class="p-cuerpo" cx="100" cy="132" rx="52" ry="34"/>
+                <path class="p-rayas" d="M60 118c6 10 6 24 2 34M140 118c-6 10-6 24-2 34"/>
+                <path class="p-pata-del" d="M76 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-pata-del" d="M104 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-oreja" d="M70 52 62 16l34 22z"/>
+                <path class="p-oreja" d="M130 52l8-36-34 22z"/>
+                <path class="p-oreja-int" d="M74 47 70 27l16 11zM126 47l4-20-16 11z"/>
+                <circle class="p-cabeza" cx="100" cy="74" r="38"/>
+                <path class="p-rayas" d="M100 38v-8M89 40l-4-8M111 40l4-8"/>
+                <ellipse class="p-hocico" cx="100" cy="86" rx="21" ry="14"/>
+                <path class="p-ojos-cerr" d="M79 70q7-9 14 0M107 70q7-9 14 0"/>
+                <path class="p-nariz" d="M100 78l-5 5h10z"/>
+                <path class="p-boca" d="M100 83v3M100 86q-5 6-10 2M100 86q5 6 10 2"/>
+                <path class="p-bigotes" d="M79 84 57 78M79 90 59 93M121 84l22-6M121 90l20 3"/>
+                <path class="p-collar" d="M78 100q22 11 44 0"/>
+                <circle class="p-campana" cx="100" cy="108" r="6"/>
+              </svg>
+            </div>
+            <div class="gato__cuerpo">
+              <h3 class="gato__nombre">Mochi <span>2 años</span></h3>
+              <p class="gato__personalidad">Se sienta en tu bolso y lo considera suyo. Ronronea como un motorcito recién arrancado.</p>
+              <dl class="gato__ficha">
+                <div><dt>Carácter</dt><dd>Cariñosa, dueña de la barra</dd></div>
+                <div><dt>Superpoder</dt><dd>Dormir encima del pedido</dd></div>
+                <div><dt>Favorita</dt><dd>Yogur (solo un poco, eh)</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <!-- GATO 2 · Tofu (foto: img/tofu.jpg) -->
+          <article class="gato" data-reveal style="--d:1;--pelaje:#f4ece0;--raya:#e3d7c5;--fondo-gato:#eef2ea">
+            <div class="gato__media">
+              <span class="sello gato__etiqueta">Adoptable</span>
+              <svg class="gato-ilu" viewBox="0 0 200 180" role="img" aria-label="Ilustración de Tofu, gato blanco lechoso de ojos abiertos">
+                <path class="p-cola" d="M148 140c30 6 38-18 18-30"/>
+                <ellipse class="p-cuerpo" cx="100" cy="132" rx="52" ry="34"/>
+                <path class="p-pata-del" d="M76 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-pata-del" d="M104 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-oreja" d="M70 52 62 16l34 22z"/>
+                <path class="p-oreja" d="M130 52l8-36-34 22z"/>
+                <path class="p-oreja-int" d="M74 47 70 27l16 11zM126 47l4-20-16 11z"/>
+                <circle class="p-cabeza" cx="100" cy="74" r="38"/>
+                <ellipse class="p-hocico" cx="100" cy="86" rx="21" ry="14"/>
+                <g class="p-ojos-abi">
+                  <ellipse cx="86" cy="69" rx="6.5" ry="7.5"/><ellipse cx="114" cy="69" rx="6.5" ry="7.5"/>
+                  <circle cx="88.5" cy="66" r="2.2" fill="#fff"/><circle cx="116.5" cy="66" r="2.2" fill="#fff"/>
+                </g>
+                <path class="p-nariz" d="M100 78l-5 5h10z"/>
+                <path class="p-boca" d="M100 83v3M100 86q-5 6-10 2M100 86q5 6 10 2"/>
+                <path class="p-bigotes" d="M79 84 57 78M79 90 59 93M121 84l22-6M121 90l20 3"/>
+              </svg>
+            </div>
+            <div class="gato__cuerpo">
+              <h3 class="gato__nombre">Tofu <span>8 meses</span></h3>
+              <p class="gato__personalidad">Curioso profesional: inspecciona cada taza antes de dar su visto bueno.</p>
+              <dl class="gato__ficha">
+                <div><dt>Carácter</dt><dd>Inquieto y simpático</dd></div>
+                <div><dt>Superpoder</dt><dd>Caber en cajas pequeñas</dd></div>
+                <div><dt>Favorita</dt><dd>Trozos de plátano (mirando)</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <!-- GATO 3 · Sultán (foto: img/sultan.jpg) -->
+          <article class="gato" data-reveal style="--d:2;--pelaje:#9a9188;--raya:#6f665d;--fondo-gato:#efeae2">
+            <div class="gato__media">
+              <span class="sello gato__etiqueta">Adoptable</span>
+              <svg class="gato-ilu" viewBox="0 0 200 180" role="img" aria-label="Ilustración de Sultán, gato tigrado gris con collar dorado">
+                <path class="p-cola" d="M148 140c30 6 38-18 18-30"/>
+                <ellipse class="p-cuerpo" cx="100" cy="132" rx="52" ry="34"/>
+                <path class="p-rayas" d="M62 116c6 10 6 26 2 36M138 116c-6 10-6 26-2 36M100 100v34"/>
+                <path class="p-pata-del" d="M76 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-pata-del" d="M104 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-oreja" d="M70 52 62 16l34 22z"/>
+                <path class="p-oreja" d="M130 52l8-36-34 22z"/>
+                <path class="p-oreja-int" d="M74 47 70 27l16 11zM126 47l4-20-16 11z"/>
+                <circle class="p-cabeza" cx="100" cy="74" r="38"/>
+                <path class="p-rayas" d="M100 38v-8M89 40l-4-8M111 40l4-8M74 46l-6-6M126 46l6-6"/>
+                <ellipse class="p-hocico" cx="100" cy="86" rx="21" ry="14"/>
+                <path class="p-ojos-cerr" d="M79 71q7-8 14 0M107 71q7-8 14 0"/>
+                <path class="p-nariz" d="M100 78l-5 5h10z"/>
+                <path class="p-boca" d="M100 83v3M100 86q-5 6-10 2M100 86q5 6 10 2"/>
+                <path class="p-bigotes" d="M79 84 57 78M79 90 59 93M121 84l22-6M121 90l20 3"/>
+                <path class="p-collar" d="M78 100q22 11 44 0"/>
+                <circle class="p-campana" cx="100" cy="108" r="6"/>
+              </svg>
+            </div>
+            <div class="gato__cuerpo">
+              <h3 class="gato__nombre">Sultán <span>4 años</span></h3>
+              <p class="gato__personalidad">Noble y observador. Premia a quien le acaricia la barbilla con un ronroneo grave de reloj de cuerda.</p>
+              <dl class="gato__ficha">
+                <div><dt>Carácter</dt><dd>Sereno, diplomático</dd></div>
+                <div><dt>Superpoder</dt><dd>Mirada de dignatario</dd></div>
+                <div><dt>Favorita</dt><dd>Atún en agua (fiestas)</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <!-- GATO 4 · Nube (foto: img/nube.jpg) -->
+          <article class="gato" data-reveal style="--d:0;--pelaje:#fbf6ee;--raya:#ece1d0;--fondo-gato:#f4efe7">
+            <div class="gato__media">
+              <span class="sello gato__etiqueta">Adoptable</span>
+              <svg class="gato-ilu" viewBox="0 0 200 180" role="img" aria-label="Ilustración de Nube, gata blanca y peluda">
+                <path class="p-cola" d="M148 140c30 6 38-18 18-30"/>
+                <ellipse class="p-cuerpo" cx="100" cy="132" rx="54" ry="36"/>
+                <path class="p-piel-suave" d="M46 132c-8 2-14 6-16 12 12 8 34 10 48 4M154 132c8 2 14 6 16 12-12 8-34 10-48 4"/>
+                <path class="p-pata-del" d="M76 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-pata-del" d="M104 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-oreja" d="M70 52 62 16l34 22z"/>
+                <path class="p-oreja" d="M130 52l8-36-34 22z"/>
+                <path class="p-oreja-int" d="M74 47 70 27l16 11zM126 47l4-20-16 11z"/>
+                <circle class="p-cabeza" cx="100" cy="74" r="40"/>
+                <ellipse class="p-hocico" cx="100" cy="86" rx="21" ry="14"/>
+                <path class="p-ojos-cerr" d="M79 70q7-9 14 0M107 70q7-9 14 0"/>
+                <path class="p-nariz" d="M100 78l-5 5h10z"/>
+                <path class="p-boca" d="M100 83v3M100 86q-5 6-10 2M100 86q5 6 10 2"/>
+                <path class="p-bigotes" d="M79 84 57 78M79 90 59 93M121 84l22-6M121 90l20 3"/>
+              </svg>
+            </div>
+            <div class="gato__cuerpo">
+              <h3 class="gato__nombre">Nube <span>3 años</span></h3>
+              <p class="gato__personalidad">Experta mundial en siestas de seis horas. Te mira, parpadea muy despacio y sigue durmiendo.</p>
+              <dl class="gato__ficha">
+                <div><dt>Carácter</dt><dd>Tranquila, minimalista</dd></div>
+                <div><dt>Superpoder</dt><dd>Flotar sobre el sofá</dd></div>
+                <div><dt>Favorita</dt><dd>Nata (una gota)</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <!-- GATO 5 · Ceniza (foto: img/ceniza.jpg) -->
+          <article class="gato" data-reveal style="--d:1;--pelaje:#aaa49b;--raya:#7d766d;--fondo-gato:#eceae5">
+            <div class="gato__media">
+              <span class="sello gato__etiqueta">Adoptable</span>
+              <svg class="gato-ilu" viewBox="0 0 200 180" role="img" aria-label="Ilustración de Ceniza, gato juguetón gris humo de ojos abiertos">
+                <path class="p-cola" d="M148 136c34 10 42-14 24-28"/>
+                <ellipse class="p-cuerpo" cx="100" cy="132" rx="52" ry="34"/>
+                <path class="p-rayas" d="M60 120c6 9 6 22 2 32M140 120c-6 9-6 22-2 32"/>
+                <path class="p-pata-del" d="M76 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-pata-del" d="M104 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-oreja" d="M70 52 62 16l34 22z"/>
+                <path class="p-oreja" d="M130 52l8-36-34 22z"/>
+                <path class="p-oreja-int" d="M74 47 70 27l16 11zM126 47l4-20-16 11z"/>
+                <circle class="p-cabeza" cx="100" cy="74" r="38"/>
+                <path class="p-rayas" d="M100 38v-8M89 40l-4-8M111 40l4-8"/>
+                <ellipse class="p-hocico" cx="100" cy="86" rx="21" ry="14"/>
+                <g class="p-ojos-abi">
+                  <ellipse cx="86" cy="69" rx="7" ry="8"/><ellipse cx="114" cy="69" rx="7" ry="8"/>
+                  <circle cx="89" cy="66" r="2.4" fill="#fff"/><circle cx="117" cy="66" r="2.4" fill="#fff"/>
+                </g>
+                <path class="p-nariz" d="M100 78l-5 5h10z"/>
+                <path class="p-boca" d="M100 83v3M100 86q-5 6-10 2M100 86q5 6 10 2"/>
+                <path class="p-bigotes" d="M79 84 57 78M79 90 59 93M121 84l22-6M121 90l20 3"/>
+              </svg>
+            </div>
+            <div class="gato__cuerpo">
+              <h3 class="gato__nombre">Ceniza <span>1 año</span></h3>
+              <p class="gato__personalidad">Juguetón caótico: cree que las servilletas son presas y que la cortina es la vía rápida al techo.</p>
+              <dl class="gato__ficha">
+                <div><dt>Carácter</dt><dd>Travieso, 100% energía</dd></div>
+                <div><dt>Superpoder</dt><dd>Aparecer donde no debe</dd></div>
+                <div><dt>Favorita</dt><dd>Plumas y correones</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <!-- GATO 6 · Oliva (foto: img/oliva.jpg)
+               Nota: Oliva ya tiene hogar; el sello cambia de color y texto. -->
+          <article class="gato" data-reveal style="--d:2;--pelaje:#c98d4e;--raya:#8a5a2b;--fondo-gato:#f2e7d3">
+            <div class="gato__media">
+              <span class="sello gato__etiqueta gato__etiqueta--adoptado">Ya adoptada ♥</span>
+              <svg class="gato-ilu" viewBox="0 0 200 180" role="img" aria-label="Ilustración de Oliva, gata atigrada marrón ya adoptada">
+                <path class="p-cola" d="M148 140c30 6 38-18 18-30"/>
+                <ellipse class="p-cuerpo" cx="100" cy="132" rx="52" ry="34"/>
+                <path class="p-rayas" d="M60 118c6 10 6 24 2 34M140 118c-6 10-6 24-2 34"/>
+                <path class="p-pata-del" d="M76 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-pata-del" d="M104 160c0-11 5-16 12-16s12 5 12 16"/>
+                <path class="p-oreja" d="M70 52 62 16l34 22z"/>
+                <path class="p-oreja" d="M130 52l8-36-34 22z"/>
+                <path class="p-oreja-int" d="M74 47 70 27l16 11zM126 47l4-20-16 11z"/>
+                <circle class="p-cabeza" cx="100" cy="74" r="38"/>
+                <path class="p-rayas" d="M100 38v-8M89 40l-4-8M111 40l4-8"/>
+                <ellipse class="p-hocico" cx="100" cy="86" rx="21" ry="14"/>
+                <path class="p-ojos-cerr" d="M79 70q7-9 14 0M107 70q7-9 14 0"/>
+                <path class="p-nariz" d="M100 78l-5 5h10z"/>
+                <path class="p-boca" d="M100 83v3M100 86q-5 6-10 2M100 86q5 6 10 2"/>
+                <path class="p-bigotes" d="M79 84 57 78M79 90 59 93M121 84l22-6M121 90l20 3"/>
+                <path class="p-collar" d="M78 100q22 11 44 0"/>
+                <circle class="p-campana" cx="100" cy="108" r="6"/>
+              </svg>
+            </div>
+            <div class="gato__cuerpo">
+              <h3 class="gato__nombre">Oliva <span>5 años</span></h3>
+              <p class="gato__personalidad">Serena como el musgo del jardín. Ronroneaba en estéreo cuando le dabas la mano izquierda.</p>
+              <dl class="gato__ficha">
+                <div><dt>Carácter</dt><dd>Dulce, observadora</dd></div>
+                <div><dt>Superpoder</dt><dd>Elegir el mejor regazo</dd></div>
+                <div><dt>Hogar</dt><dd>Adoptada en marzo ♥</dd></div>
+              </dl>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="nota-gatos" data-reveal>
+          ¿Quieres llevarte a uno a casa? Pregunta en la barra por el proceso de adopción:
+          visita previa, contrato y seguimiento. Solo pedimos hogar, paciencia y un rincón junto a la ventana.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. MENÚ
+         ============================================================ -->
+    <section class="seccion fondo-madera" id="menu" aria-labelledby="titulo-menu">
+      <div class="borde-papel borde-papel--kraft" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,60 V24 L60,30 L120,16 L180,34 L240,20 L300,28 L360,14 L420,32 L480,24 L540,36 L600,18 L660,26 L720,12 L780,30 L840,22 L900,34 L960,16 L1020,28 L1080,20 L1140,32 L1200,14 L1260,26 L1320,24 L1380,30 L1440,20 V60 Z"/></svg>
+      </div>
+
+      <div class="camino-patas" aria-hidden="true">
+        <svg class="pata" style="left:3%;bottom:18%;transform:rotate(-22deg)" aria-hidden="true"><use href="#i-pata"></use></svg>
+        <svg class="pata" style="left:8%;bottom:6%;transform:rotate(8deg);width:22px" aria-hidden="true"><use href="#i-pata"></use></svg>
+      </div>
+
+      <div class="contenedor">
+        <header class="cabecera-seccion">
+          <p class="antetitulo" data-reveal>
+            <svg aria-hidden="true"><use href="#i-grano"></use></svg> Nuestra carta
+          </p>
+          <h2 class="titulo-seccion" id="titulo-menu" data-reveal style="--d:1">Café de verdad, con <em>nombre de gato</em></h2>
+          <p class="intro-seccion" data-reveal style="--d:2">
+            Grano de especialidad tostado a dos calles de aquí, tés a granel y postres horneados
+            cada mañana por Marisa, que insiste en que esa es su forma de ronronear. Siempre hielo y limón.
+          </p>
+        </header>
+
+        <div class="rejilla-menu">
+
+          <!-- Categoría: Cafés -->
+          <div class="carta" data-reveal style="--d:0">
+            <div class="carta__titulo">
+              <svg aria-hidden="true"><use href="#i-taza"></use></svg>
+              <h3>Cafés</h3>
+            </div>
+            <ul class="carta__lista">
+              <li class="plato"><span class="plato__nombre">Miau-chiato</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$4.20</span><p class="plato__desc">Espresso con leche vaporizada y un dibujo de patita en la espuma.</p></li>
+              <li class="plato"><span class="plato__nombre">Purr-ccino</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$4.00</span><p class="plato__desc">Capuchino espumoso con canela y un pelín de cacao.</p></li>
+              <li class="plato"><span class="plato__nombre">Gato tumbado</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$4.60</span><p class="plato__desc">Flat white servido sobre una bola de helado de vainilla de la casa.</p></li>
+              <li class="plato"><span class="plato__nombre">Ronroneo de otoño</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$4.80</span><p class="plato__desc">Cold brew de 18 h con caramelo casero y sal en escamas.</p></li>
+              <li class="plato"><span class="plato__nombre">Bigote de leche</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$3.20</span><p class="plato__desc">Cortado doble con leche bien vaporizada. Para los puristas.</p></li>
+              <li class="plato"><span class="plato__nombre">Descafeinado Siusiu</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$3.60</span><p class="plato__desc">Descafeinado por agua, todo el sabor sin el sprint de las 22:00.</p></li>
+            </ul>
+          </div>
+
+          <!-- Categoría: Tés e infusiones -->
+          <div class="carta" data-reveal style="--d:1">
+            <div class="carta__titulo">
+              <svg aria-hidden="true"><use href="#i-rama"></use></svg>
+              <h3>Tés e infusiones</h3>
+            </div>
+            <ul class="carta__lista">
+              <li class="plato"><span class="plato__nombre">Té de nueve colas</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$3.80</span><p class="plato__desc">Infusión de frutos rojos, hibisco y un poco de regaliz.</p></li>
+              <li class="plato"><span class="plato__nombre">Matcha Michi</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$4.50</span><p class="plato__desc">Matcha ceremonial batido con leche de avena y miel de romero.</p></li>
+              <li class="plato"><span class="plato__nombre">Nube peluda</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$4.10</span><p class="plato__desc">Té blanco con coco, vainilla y espuma sedosa.</p></li>
+              <li class="plato"><span class="plato__nombre">Encuentro en el jardín</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$3.60</span><p class="plato__desc">Manzanilla, hierbabuena y miel. La infusión que pide Nube.</p></li>
+              <li class="plato"><span class="plato__nombre">Chai de la casa</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$4.40</span><p class="plato__desc">Especiado a fuego lento: canela, cardamomo, jengibre y anís.</p></li>
+            </ul>
+          </div>
+
+          <!-- Categoría: Postres -->
+          <div class="carta" data-reveal style="--d:2">
+            <div class="carta__titulo">
+              <svg aria-hidden="true"><use href="#i-corazon"></use></svg>
+              <h3>Postres</h3>
+            </div>
+            <ul class="carta__lista">
+              <li class="plato"><span class="plato__nombre">Pisuñuelas</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$2.80</span><p class="plato__desc">Quesadillas de arroz con azúcar glass y una pizca de canela</p></li>
+              <li class="plato"><span class="plato__nombre">Torta Tres Leches</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$5.20</span><p class="plato__desc">Torta esponjosa con crema pastelera y un toque de canela. Dicen que es "ilegalmente buena"</p></li>
+              <li class="plato"><span class="plato__nombre">Cola de carmelo</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$4.40</span><p class="plato__desc">Orillas de pan con chocolate caliente y un toque de canela</p></li>
+              <li class="plato"><span class="plato__nombre">Bizcocho Michifluff</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$3.90</span><p class="plato__desc">Pan de yema con esencia de vainilla y glaseado blanco</p></li>
+              <li class="plato"><span class="plato__nombre">Tarta de queso Atigrada</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$5.60</span><p class="plato__desc">Con espeado de nuez picada y rallado de coco. Edición limitada los domingos.</p></li>
+            </ul>
+          </div>
+
+          <!-- Categoría: Snacks salados -->
+          <div class="carta" data-reveal style="--d:3">
+            <div class="carta__titulo">
+              <svg aria-hidden="true"><use href="#i-grano"></use></svg>
+              <h3>Snacks</h3>
+            </div>
+            <ul class="carta__lista">
+              <li class="plato"><span class="plato__nombre">Tabla del Zarpazo</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$9.50</span><p class="plato__desc">Queso fresco, chicharrón crujiente y yuca frita</p></li>
+              <li class="plato"><span class="plato__nombre">Bocadillo Bigotes</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$6.50</span><p class="plato__desc">Tostada de tomate con orégano y sal de guarumap</p></li>
+              <li class="plato"><span class="plato__nombre">Cuenco de la casa</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$5.40</span><p class="plato__desc">Granola tostada por nosotros, yogur griego y fruta de temporada.</p></li>
+              <li class="plato"><span class="plato__nombre">Patitass</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$5.80</span><p class="plato__desc">Tostadas de plátano madurado con miel de algodón. Para compartir.</p></li>
+              <li class="plato"><span class="plato__nombre">Empanadillas del Roble</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$3.40</span><p class="plato__desc">Hechas a la parrilla, relleno de queso con loroco o de frijoles</p></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <p class="nota-carta" data-reveal>
+          <svg aria-hidden="true"><use href="#i-pata"></use></svg>
+          Precios con IVA incluido · Opciones sin lactosa y sin gluten bajo pedido ·
+          Los gatos no se venden, se adoptan <svg aria-hidden="true"><use href="#i-corazon"></use></svg>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. REGLAS DEL CAFÉ
+         ============================================================ -->
+    <section class="seccion fondo-crema" id="reglas" aria-labelledby="titulo-reglas">
+      <div class="borde-papel borde-papel--madera" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,60 V24 L60,30 L120,16 L180,34 L240,20 L300,28 L360,14 L420,32 L480,24 L540,36 L600,18 L660,26 L720,12 L780,30 L840,22 L900,34 L960,16 L1020,28 L1080,20 L1140,32 L1200,14 L1260,26 L1320,24 L1380,30 L1440,20 V60 Z"/></svg>
+      </div>
+
+      <svg class="hoja-esquina hoja-esquina--der" aria-hidden="true"><use href="#i-rama"></use></svg>
+
+      <div class="contenedor">
+        <header class="cabecera-seccion">
+          <p class="antetitulo" data-reveal>
+            <svg aria-hidden="true"><use href="#i-check"></use></svg> Reglas de la casa
+          </p>
+          <h2 class="titulo-seccion" id="titulo-reglas" data-reveal style="--d:1">Seis normas para que todos <em>ronroneemos</em></h2>
+          <p class="intro-seccion" data-reveal style="--d:2">
+            Las escribimos entre todos el primer año, con ayuda de muchas migas de bizcocho.
+            Las vigila Sultán, que nunca pierde una.
+          </p>
+        </header>
+
+        <div class="rejilla-reglas">
+          <article class="regla" data-reveal style="--d:0">
+            <svg aria-hidden="true"><use href="#i-pata"></use></svg>
+            <div><h3>Ellos eligen</h3><p>Acércate solo si el gato viene a ti. Aquí no hay ningún gato obligado a ser cariñoso, y está bien así.</p></div>
+          </article>
+          <article class="regla" data-reveal style="--d:1">
+            <svg aria-hidden="true"><use href="#i-check"></use></svg>
+            <div><h3>Manos limpias, manos tranquilas</h3><p>Lávate las manos a la entrada y acaricia en el lomo y la barbilla. La panza es una trampa (felina).</p></div>
+          </article>
+          <article class="regla" data-reveal style="--d:2">
+            <svg aria-hidden="true"><use href="#i-reloj"></use></svg>
+            <div><h3>Voz de murmullo</h3><p>Sin gritos, sin carreras, sin persecuciones. Los gatos oyen hasta el susurro (y nosotros también).</p></div>
+          </article>
+          <article class="regla" data-reveal style="--d:3">
+            <svg aria-hidden="true"><use href="#i-gato"></use></svg>
+            <div><h3>Sin flash, por favor</h3><p>Fotos sí, flash no. Y si compartes la tuya, etiquétanos: nos encanta verlos crecer.</p></div>
+          </article>
+          <article class="regla" data-reveal style="--d:4">
+            <svg aria-hidden="true"><use href="#i-taza"></use></svg>
+            <div><h3>La comida es tuya</h3><p>El menú es para humanos. Su pienso y sus golosinas están en su barra y no se comparten, ni aunque lo pidan con ojos de gato.</p></div>
+          </article>
+          <article class="regla" data-reveal style="--d:5">
+            <svg aria-hidden="true"><use href="#i-corazon"></use></svg>
+            <div><h3>Adoptar, no comprar</h3><p>Si te enamoras de alguno, pregunta en la barra por el proceso: visita previa, contrato y seguimiento amistoso.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. RESERVAS
+         ============================================================ -->
+    <section class="seccion fondo-musgo" id="reservas" aria-labelledby="titulo-reservas">
+      <div class="borde-papel borde-papel--crema" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,60 V24 L60,30 L120,16 L180,34 L240,20 L300,28 L360,14 L420,32 L480,24 L540,36 L600,18 L660,26 L720,12 L780,30 L840,22 L900,34 L960,16 L1020,28 L1080,20 L1140,32 L1200,14 L1260,26 L1320,24 L1380,30 L1440,20 V60 Z"/></svg>
+      </div>
+
+      <div class="contenedor">
+        <header class="cabecera-seccion">
+          <p class="antetitulo" data-reveal>
+            <svg aria-hidden="true"><use href="#i-reloj"></use></svg> Reservas
+          </p>
+          <h2 class="titulo-seccion" id="titulo-reservas" data-reveal style="--d:1">Guarda tu rincón <em>acurrucado</em></h2>
+          <p class="intro-seccion" data-reveal style="--d:2">
+            Trabajamos por pases para que los gatos tengan momentos tranquilos.
+            Rellena el formulario y te confirmamos por correo en menos de 24 h (o en 9 vidas, lo que llegue primero).
+          </p>
+        </header>
+
+        <div class="reservas__interior">
+          <!-- FORMULARIO DE RESERVA.
+               Nota: es una demo sin servidor. Conecta tu backend o servicio
+               (Formspree, Netlify Forms, PHP, etc.) en el evento submit del JS. -->
+          <form class="formulario" id="formulario-reserva" novalidate data-reveal="izquierda">
+            <div class="formulario__fila">
+              <div class="campo">
+                <label for="nombre">Nombre y apellidos <span aria-hidden="true">*</span></label>
+                <input type="text" id="nombre" name="nombre" autocomplete="name" required placeholder="Lina Robles">
+              </div>
+              <div class="campo">
+                <label for="email">Correo electrónico <span aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" required placeholder="lina@ejemplo.com">
+                <span class="campo__ayuda">Solo para confirmarte la reserva.</span>
+              </div>
+            </div>
+
+            <div class="formulario__fila">
+              <div class="campo">
+                <label for="fecha">Fecha <span aria-hidden="true">*</span></label>
+                <input type="date" id="fecha" name="fecha" required>
+              </div>
+              <div class="campo">
+                <label for="hora">Hora de llegada <span aria-hidden="true">*</span></label>
+                <select id="hora" name="hora" required>
+                  <option value="">Elige un pase…</option>
+                  <option>10:00</option><option>11:00</option><option>12:00</option>
+                  <option>13:00</option><option>16:00</option><option>17:00</option>
+                  <option>18:00</option><option>19:00</option><option>20:00</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="formulario__fila">
+              <div class="campo">
+                <label for="personas">Número de personas <span aria-hidden="true">*</span></label>
+                <input type="number" id="personas" name="personas" min="1" max="8" step="1" value="2" required>
+                <span class="campo__ayuda">Máximo 8 por pase. ¿Sois más? Escríbenos.</span>
+              </div>
+              <div class="campo">
+                <label for="ocasion">¿Alguna ocasión especial?</label>
+                <select id="ocasion" name="ocasion">
+                  <option value="ninguna">Ninguna, solo ganas de café</option>
+                  <option value="cumple">Cumpleaños</option>
+                  <option value="aniversario">Aniversario</option>
+                  <option value="adopcion">Quiero conocer a un gatito para adoptar</option>
+                  <option value="trabajo">Trabajo / estudio tranquilo</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="notas">Notas para el equipo</label>
+              <textarea id="notas" name="notas" placeholder="Alergias, carrito de bebé, silla de ruedas, necesitamos mesa junto a la ventana…"></textarea>
+            </div>
+
+            <div class="campo campo--checkbox">
+              <input type="checkbox" id="reglas-check" name="reglas" required>
+              <label for="reglas-check">He leído las reglas de la casa y prometo ronronear en voz baja <span aria-hidden="true">*</span></label>
+            </div>
+
+            <button class="boton boton--oscuro" type="submit">
+              <svg aria-hidden="true"><use href="#i-corazon"></use></svg>
+              Solicitar mi reserva
+            </button>
+
+            <!-- Mensaje de confirmación accesible (role=status) -->
+            <div class="aviso-exito" id="aviso-exito" role="status" aria-live="polite"></div>
+          </form>
+
+          <aside class="reservas__aside" data-reveal="derecha" aria-label="Información útil sobre las reservas">
+            <div class="dato-lateral">
+              <h3><svg aria-hidden="true"><use href="#i-personas"></use></svg> Aforo reducido</h3>
+              <p>Máximo 8 personas por pase y nunca más de 4 gatos «activos» a la vez. Es la manera que tienen de no agobiarse.</p>
+            </div>
+            <div class="dato-lateral">
+              <h3><svg aria-hidden="true"><use href="#i-reloj"></use></svg> Duración recomendada</h3>
+              <p>1 h 30 min. La última entrada es 45 minutos antes del cierre; después empieza su siesta oficial.</p>
+            </div>
+            <div class="dato-lateral">
+              <h3><svg aria-hidden="true"><use href="#i-mail"></use></svg> Confirmación</h3>
+              <p>Te escribimos en menos de 24 h. La reserva no tiene coste; si no puedes venir, avísanos y liberas la mesa para otro ronroneador.</p>
+            </div>
+            <div class="dato-lateral">
+              <h3><svg aria-hidden="true"><use href="#i-tel"></use></svg> ¿Prefieres llamar?</h3>
+              <p>Estamos al teléfono de 10:00 a 20:00, salvo que haya una pelota de lana por medio. <a href="tel:+50278734124" style="color:var(--dorado-cl)">910 234 567</a></p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. TESTIMONIOS
+         ============================================================ -->
+    <section class="seccion fondo-kraft" id="testimonios" aria-labelledby="titulo-testimonios">
+      <div class="borde-papel borde-papel--musgo" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,60 V24 L60,30 L120,16 L180,34 L240,20 L300,28 L360,14 L420,32 L480,24 L540,36 L600,18 L660,26 L720,12 L780,30 L840,22 L900,34 L960,16 L1020,28 L1080,20 L1140,32 L1200,14 L1260,26 L1320,24 L1380,30 L1440,20 V60 Z"/></svg>
+      </div>
+
+      <div class="contenedor">
+        <header class="cabecera-seccion">
+          <p class="antetitulo" data-reveal>
+            <svg aria-hidden="true"><use href="#i-estrella"></use></svg> Testimonios
+          </p>
+          <h2 class="titulo-seccion" id="titulo-testimonios" data-reveal style="--d:1">Lo que dicen los <em>humanos</em></h2>
+          <p class="intro-seccion" data-reveal style="--d:2">
+            Reseñas reales (bueno, de momento las escribe el vecindario). Los gatos aún no saben escribir, pero puntúan con la cola.
+          </p>
+        </header>
+
+        <div class="rejilla-testimonios">
+          <article class="testimonio" data-reveal style="--d:0">
+            <div class="estrellas" role="img" aria-label="5 de 5 estrellas">
+              <svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg>
+            </div>
+            <blockquote>
+              «Vinimos “de paso” y acabamos alargando la reserva dos horas más. El café es serio
+              (en el buen sentido) y Mochi se sentó en mi regazo antes de que llegara el segundo sorbo.»
+            </blockquote>
+            <div class="testimonio__autor">
+              <span class="avatar" style="background:#c1663f" aria-hidden="true">C</span>
+              <div><strong>Clara M.</strong><span>Clienta habitual · hace 2 semanas</span></div>
+            </div>
+          </article>
+
+          <article class="testimonio" data-reveal style="--d:1">
+            <div class="estrellas" role="img" aria-label="5 de 5 estrellas">
+              <svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg>
+            </div>
+            <blockquote>
+              «Iba con mi hija a “ver gatos” y salimos con la receta del bizcocho de limón, tres fotos
+              de Tofu y muchas ganas de adoptar. Te explican todo el proceso sin presionar nada.»
+            </blockquote>
+            <div class="testimonio__autor">
+              <span class="avatar" style="background:#6b7f5e" aria-hidden="true">D</span>
+              <div><strong>Diego R.</strong><span>Visitante · hace 1 mes</span></div>
+            </div>
+          </article>
+
+          <article class="testimonio" data-reveal style="--d:2">
+            <div class="estrellas" role="img" aria-label="5 de 5 estrellas">
+              <svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg><svg aria-hidden="true"><use href="#i-estrella"></use></svg>
+            </div>
+            <blockquote>
+              «Celebramos nuestro aniversario aquí: mesa junto a la ventana, ronroneo de fondo y una
+              tarta de queso que debería ser ilegal. 10/10, volveríamos con colas.»
+            </blockquote>
+            <div class="testimonio__autor">
+              <span class="avatar" style="background:#9a9188" aria-hidden="true">N</span>
+              <div><strong>Noa y Álex</strong><span>Primera visita · hace 3 semanas</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. CONTACTO Y UBICACIÓN
+         ============================================================ -->
+    <section class="seccion fondo-madera" id="contacto" aria-labelledby="titulo-contacto">
+      <div class="borde-papel borde-papel--kraft" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,60 V24 L60,30 L120,16 L180,34 L240,20 L300,28 L360,14 L420,32 L480,24 L540,36 L600,18 L660,26 L720,12 L780,30 L840,22 L900,34 L960,16 L1020,28 L1080,20 L1140,32 L1200,14 L1260,26 L1320,24 L1380,30 L1440,20 V60 Z"/></svg>
+      </div>
+
+      <div class="contenedor">
+        <header class="cabecera-seccion">
+          <p class="antetitulo" data-reveal>
+            <svg aria-hidden="true"><use href="#i-pin"></use></svg> Contacto y ubicación
+          </p>
+          <h2 class="titulo-seccion" id="titulo-contacto" data-reveal style="--d:1">Estamos al final de la calle del <em>Roble</em></h2>
+          <p class="intro-seccion" data-reveal style="--d:2">
+            A cinco minutos a pie del Parque Cuscatlán, Si huele a café y se oye un ronroneo suave,
+            es que has llegado.
+          </p>
+        </header>
+
+        <div class="contacto__interior">
+          <div data-reveal="izquierda">
+            <ul class="lista-contacto">
+              <li>
+                <svg aria-hidden="true"><use href="#i-pin"></use></svg>
+                <div><strong>Dirección</strong><span>Calle del Roble, 12 (bajo) · Calle del Roble, colonia Escalón · Colonia Escalón, San Salvador</span></div>
+              </li>
+              <li>
+                <svg aria-hidden="true"><use href="#i-tel"></use></svg>
+                <div><strong>Teléfono</strong><a href="tel:+50278734124">910 234 567</a></div>
+              </li>
+              <li>
+                <svg aria-hidden="true"><use href="#i-mail"></use></svg>
+                <div><strong>Correo</strong><a href="mailto:hola@nekoroblesv.es">hola@nekoroblecafe.es</a></div>
+              </li>
+            </ul>
+
+            <table class="horario">
+              <caption>Horarios</caption>
+              <tbody>
+                <tr><th scope="row">Martes a jueves</th><td>10:00 – 20:00</td></tr>
+                <tr><th scope="row">Viernes y sábados</th><td>10:00 – 22:00</td></tr>
+                <tr><th scope="row">Domingos</th><td>11:00 – 19:00</td></tr>
+                <tr><th scope="row">Lunes</th><td>Cerrado (día de baños y cortinas)</td></tr>
+              </tbody>
+            </table>
+
+            <div class="redes" aria-label="Redes sociales">
+              <a href="https://instagram.com/nekoroblecafe" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Neko Roble Café (se abre en una pestaña nueva)">
+                <svg aria-hidden="true"><use href="#i-insta"></use></svg>
+              </a>
+              <a href="https://facebook.com/nekoroblecafe" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Neko Roble Café (se abre en una pestaña nueva)">
+                <svg aria-hidden="true"><use href="#i-face"></use></svg>
+              </a>
+              <a href="https://tiktok.com/@nekoroblecafe" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Neko Roble Café (se abre en una pestaña nueva)">
+                <svg aria-hidden="true"><use href="#i-tiktok"></use></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="mapa" data-reveal="derecha">
+            <!-- MAPA INTERACTIVO: sustituye todo este <svg> por un iframe real, p. ej.
+                 <iframe title="Ubicación de Neko Roble Café en Google Maps"
+                         src="https://www.google.com/maps/embed?pb=...&output=embed"
+                         width="100%" height="340" style="border:0" loading="lazy"
+                         referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                        <svg viewBox="0 0 500 380" role="img" aria-label="Mapa ilustrado de la colonia Escalón, San Salvador">
+              <rect width="500" height="380" fill="#e3d0c0"/>
+              <!-- manzanas residenciales -->
+              <g fill="#d6c5b9" stroke="#a7907e" stroke-width="2">
+                <rect x="26" y="26" width="130" height="106" rx="6"/>
+                <rect x="186" y="26" width="110" height="106" rx="6"/>
+                <rect x="326" y="26" width="110" height="106" rx="6"/>
+                <rect x="26" y="162" width="130" height="142" rx="6"/>
+                <rect x="186" y="162" width="110" height="142" rx="6"/>
+                <rect x="326" y="162" width="110" height="142" rx="6"/>
+              </g>
+              <!-- Parque Cuscatlán -->
+              <g fill="#76a45e">
+                <circle cx="250" cy="60" r="18"/>
+                <circle cx="270" cy="88" r="14"/>
+                <circle cx="290" cy="55" r="12"/>
+                <circle cx="310" cy="85" r="16"/>
+                <text x="250" y="122" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#3d2c22">Parque Cuscatlán</text>
+              </g>
+              <!-- Monumento a la Constitución / Monumento al Divino Salvador -->
+              <g transform="translate(400 60)">
+                <polygon points="0,0 25,0 30,30 0,30" fill="#e74c3c"/>
+                <text x="12" y="18" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#fff">M C</text>
+              </g>
+              <!-- calles -->
+              <g stroke="#d5b6a1" stroke-width="18" stroke-linecap="round">
+                <path d="M0 168h500"/><path d="M190 0v380"/><path d="M342 0v380"/>
+              </g>
+              <g stroke="#d5b6a1" stroke-width="2" stroke-dasharray="8 6">
+                <path d="M0 168h500"/><path d="M190 0v380"/>
+              </g>
+              <text x="20" y="160" font-family="Georgia, serif" font-size="12" fill="#5a3d27">Calle del Roble</text>
+              <text x="200" y="30" font-family="Georgia, serif" font-size="12" fill="#5a3d27">Av. Juan Pablo II</text>
+              <!-- Metro (referencia simbólica) -->
+              <g transform="translate(40 300)">
+                <circle r="14" fill="#e74c3c"/>
+                <text y="5" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#fff6ea">T</text>
+                <text x="24" y="3" font-family="Georgia, serif" font-size="11" fill="#3d2c22">Trenque</text>
+              </g>
+              <!-- Marca de la cafetería -->
+              <g transform="translate(168 158)">
+                <rect x="-40" y="20" width="110" height="22" rx="5" fill="#76a45e"/>
+                <text x="20" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#3d2c22">Neko Roble Café</text>
+              </g>
+            </svg>
+            <p class="mapa__nota">Mapa ilustrado de referencia · sustituir por Google Maps embebido (ver comentario en el código)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       10. FOOTER
+       ============================================================ -->
+  <footer class="pie">
+    <div class="borde-papel borde-papel--madera" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,60 V24 L60,30 L120,16 L180,34 L240,20 L300,28 L360,14 L420,32 L480,24 L540,36 L600,18 L660,26 L720,12 L780,30 L840,22 L900,34 L960,16 L1020,28 L1080,20 L1140,32 L1200,14 L1260,26 L1320,24 L1380,30 L1440,20 V60 Z"/></svg>
+    </div>
+
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div>
+          <a class="logo" href="#inicio" aria-label="Neko Roble Café, ir al inicio">
+            <svg class="logo__icono" aria-hidden="true"><use href="#i-gato"></use></svg>
+            <span class="logo__texto">Neko Roble<em>Café</em></span>
+          </a>
+          <p class="pie__texto" style="margin-top:1rem">
+            Café de especialidad, postres de la abuela y seis motivos muy peludos para ronronear.
+            Refugio de paso desde 2019.
+          </p>
+        </div>
+
+        <nav aria-labelledby="pie-visitanos">
+          <h3 id="pie-visitanos">Visítanos</h3>
+          <ul>
+            <li><a href="#contacto">Calle del Roble, 12 · San Salvador</a></li>
+            <li><a href="#contacto">Horarios y cómo llegar</a></li>
+            <li><a href="tel:+50278734124">910 234 567</a></li>
+            <li><a href="mailto:hola@nekoroblesv.es">hola@nekoroblecafe.es</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="pie-explora">
+          <h3 id="pie-explora">Explora</h3>
+          <ul>
+            <li><a href="#gatitos">Nuestros gatitos</a></li>
+            <li><a href="#menu">Menú</a></li>
+            <li><a href="#reglas">Reglas de la casa</a></li>
+            <li><a href="#reservas">Reservas</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="pie-letra">
+          <h3 id="pie-letra">Pequeña letra</h3>
+          <ul>
+            <li><a href="#reglas">Proceso de adopción</a></li>
+            <li><a href="#nosotros">Quiénes somos</a></li>
+            <li><a href="#contacto">Privacidad</a></li>
+            <li><a href="#contacto">Aviso legal</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="pie__abajo">
+        <p>© <span id="anio">2026</span> Neko Roble Café · Hecho a mano con ♥, café de bolsa y muchos ronroneos.</p>
+        <p>
+          Creado y diseñado por <strong>Sakura Enterprise</strong> ·
+          <a href="#inicio">Volver arriba ↑</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  /* =========================================================================
+     NEKO ROBLE CAFÉ — JavaScript vanilla
+     1. Menú móvil accesible
+     2. Scroll suave con desfase de cabecera + enfoque accesible
+     3. Aparición al hacer scroll (IntersectionObserver)
+     4. Enlace activo en la navegación
+     5. Contadores animados de las cifras
+     6. Validación y envío del formulario de reservas
+     ========================================================================= */
+  (function () {
+    "use strict";
+
+    var movimientoReducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- 1. Menú móvil ---------------------------------------------- */
+    var botonMenu = document.getElementById("boton-menu");
+    var nav = document.getElementById("nav-principal");
+
+    function alternarMenu(forzar) {
+      var abierto = typeof forzar === "boolean" ? forzar : nav.getAttribute("data-abierta") !== "true";
+      nav.setAttribute("data-abierta", String(abierto));
+      botonMenu.setAttribute("aria-expanded", String(abierto));
+      botonMenu.querySelector(".visually-hidden").textContent = abierto ? "Cerrar el menú de navegación" : "Abrir el menú de navegación";
+    }
+
+    botonMenu.addEventListener("click", function () { alternarMenu(); });
+
+    /* Cierra el menú al pulsar Escape */
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape" && nav.getAttribute("data-abierta") === "true") {
+        alternarMenu(false);
+        botonMenu.focus();
+      }
+    });
+
+    /* Cierra el menú al redimensionar a escritorio */
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 860) { alternarMenu(false); }
+    });
+
+    /* ---------- 2. Scroll suave con desfase -------------------------------- */
+    var cabecera = document.getElementById("cabecera");
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (enlace) {
+      enlace.addEventListener("click", function (evento) {
+        var id = enlace.getAttribute("href");
+        if (!id || id === "#") { return; }
+        var destino = document.querySelector(id);
+        if (!destino) { return; }
+
+        evento.preventDefault();
+        alternarMenu(false);
+
+        /* Desfase: altura de la cabecera fija + un poco de aire */
+        var desfase = cabecera.offsetHeight + 14;
+        var arriba = destino.getBoundingClientRect().top + window.pageYOffset - desfase;
+
+        window.scrollTo({
+          top: Math.max(arriba, 0),
+          behavior: movimientoReducido ? "auto" : "smooth"
+        });
+
+        /* Enfoca el destino para que la navegación por teclado siga el recorrido */
+        destino.setAttribute("tabindex", "-1");
+        destino.focus({ preventScroll: true });
+
+        /* Actualiza la URL sin saltos bruscos */
+        if (history.pushState) { history.pushState(null, "", id); }
+      });
+    });
+
+    /* ---------- 3. Aparición al hacer scroll ------------------------------- */
+    var elementosReveal = document.querySelectorAll("[data-reveal]");
+
+    if ("IntersectionObserver" in window && !movimientoReducido) {
+      var observadorReveal = new IntersectionObserver(function (entradas, observador) {
+        entradas.forEach(function (entrada) {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add("visible");
+            observador.unobserve(entrada.target); /* solo una vez */
+          }
+        });
+      }, { threshold: 0.14, rootMargin: "0px 0px -60px 0px" });
+
+      elementosReveal.forEach(function (el) { observadorReveal.observe(el); });
+    } else {
+      /* Sin soporte o con movimiento reducido: todo visible de inmediato */
+      elementosReveal.forEach(function (el) { el.classList.add("visible"); });
+    }
+
+    /* ---------- 4. Enlace activo en la navegación -------------------------- */
+    var enlacesNav = Array.prototype.slice.call(document.querySelectorAll(".nav__enlace"));
+    var secciones = enlacesNav
+      .map(function (enlace) { return document.querySelector(enlace.getAttribute("href")); })
+      .filter(Boolean);
+
+    if ("IntersectionObserver" in window && secciones.length) {
+      var observadorSecciones = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (entrada) {
+          if (!entrada.isIntersecting) { return; }
+          enlacesNav.forEach(function (enlace) {
+            var activo = enlace.getAttribute("href") === "#" + entrada.target.id;
+            if (activo) { enlace.setAttribute("aria-current", "true"); }
+            else { enlace.removeAttribute("aria-current"); }
+          });
+        });
+      }, { rootMargin: "-45% 0px -50% 0px" });
+
+      secciones.forEach(function (seccion) { observadorSecciones.observe(seccion); });
+    }
+
+    /* Sombra de la cabecera al desplazarse */
+    function actualizarCabecera() {
+      cabecera.classList.toggle("cabecera--fija", window.pageYOffset > 40);
+    }
+    window.addEventListener("scroll", actualizarCabecera, { passive: true });
+    actualizarCabecera();
+
+    /* ---------- 5. Contadores animados ------------------------------------- */
+    var contadores = document.querySelectorAll("[data-contador]");
+
+    function animarContador(elemento) {
+      var objetivo = parseFloat(elemento.getAttribute("data-contador")) || 0;
+      var decimales = parseInt(elemento.getAttribute("data-decimales") || "0", 10);
+      var duracion = 1300;
+      var inicio = null;
+
+      function pintar(valor) {
+        var numero = decimales ? (valor / 10).toFixed(decimales).replace(".", ",") : Math.round(valor).toLocaleString("es-ES");
+        elemento.textContent = decimales ? numero : numero;
+      }
+
+      function paso(tiempo) {
+        if (inicio === null) { inicio = tiempo; }
+        var avance = Math.min((tiempo - inicio) / duracion, 1);
+        /* easing suave de salida */
+        var suavizado = 1 - Math.pow(1 - avance, 3);
+        pintar(objetivo * suavizado);
+        if (avance < 1) { window.requestAnimationFrame(paso); }
+      }
+
+      window.requestAnimationFrame(paso);
+    }
+
+    if ("IntersectionObserver" in window && !movimientoReducido) {
+      var observadorContadores = new IntersectionObserver(function (entradas, observador) {
+        entradas.forEach(function (entrada) {
+          if (entrada.isIntersecting) {
+            animarContador(entrada.target);
+            observador.unobserve(entrada.target);
+          }
+        });
+      }, { threshold: 0.6 });
+      contadores.forEach(function (c) { observadorContadores.observe(c); });
+    } else {
+      contadores.forEach(function (c) {
+        var d = parseInt(c.getAttribute("data-decimales") || "0", 10);
+        var v = parseFloat(c.getAttribute("data-contador")) || 0;
+        c.textContent = d ? (v / 10).toFixed(d).replace(".", ",") : v.toLocaleString("es-ES");
+      });
+    }
+
+    /* ---------- 6. Formulario de reservas ---------------------------------- */
+    var formulario = document.getElementById("formulario-reserva");
+    var aviso = document.getElementById("aviso-exito");
+    var campoFecha = document.getElementById("fecha");
+
+    /* La fecha no puede ser anterior a hoy */
+    var hoy = new Date();
+    var hoyISO = new Date(hoy.getTime() - hoy.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    campoFecha.setAttribute("min", hoyISO);
+
+    var MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    var DIAS = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+
+    function mensajeAmigable(campo) {
+      if (campo.validity.valueMissing) {
+        return campo.type === "checkbox"
+          ? "Marca la casilla para poder reservar (las reglas existen por algo)."
+          : "Este campo hace falta para la reserva.";
+      }
+      if (campo.validity.typeMismatch && campo.type === "email") {
+        return "Ese correo no parece válido… ¿lo revisamos juntos, miau?";
+      }
+      if (campo.validity.rangeUnderflow) {
+        return "Al menos una persona (o un gato invisible, pero que conste).";
+      }
+      if (campo.validity.rangeOverflow) {
+        return "Para grupos de más de 8 personas, escríbenos y lo montamos.";
+      }
+      if (campo.validity.badInput) { return "Revisa el formato de este campo."; }
+      return "Revisa este campo, porfa.";
+    }
+
+    formulario.addEventListener("submit", function (evento) {
+      evento.preventDefault();
+      aviso.setAttribute("data-visible", "false");
+      aviso.textContent = "";
+
+      /* Validación manual con mensajes cercanos */
+      var campos = Array.prototype.slice.call(formulario.querySelectorAll("input, select, textarea"));
+      var primerIncorrecto = null;
+
+      campos.forEach(function (campo) {
+        campo.setCustomValidity("");
+        if (campo.type === "checkbox" || !campo.willValidate) { return; }
+        if (campo === campoFecha && campo.value && campo.value < hoyISO) {
+          campo.setCustomValidity("Esa fecha ya pasó: los gatos viven el presente.");
+        }
+      });
+
+      campos.forEach(function (campo) {
+        if (!campo.checkValidity()) {
+          if (!primerIncorrecto) { primerIncorrecto = campo; }
+          /* Añadimos el error debajo del campo */
+          var contenedor = campo.closest(".campo");
+          if (contenedor && !contenedor.querySelector(".campo__error")) {
+            var error = document.createElement("small");
+            error.className = "campo__ayuda campo__error";
+            error.style.color = "#9e4a29";
+            error.style.fontWeight = "700";
+            error.textContent = mensajeAmigable(campo);
+            error.id = "error-" + (campo.id || campo.name);
+            contenedor.appendChild(error);
+            campo.setAttribute("aria-describedby", error.id);
+          }
+        } else {
+          var contenedorOk = campo.closest(".campo");
+          if (contenedorOk) {
+            var viejo = contenedorOk.querySelector(".campo__error");
+            if (viejo) { viejo.remove(); }
+          }
+        }
+      });
+
+      if (primerIncorrecto) {
+        primerIncorrecto.focus();
+        return;
+      }
+
+      /* Resumen de la reserva (aquí conectarías tu backend) */
+      var datos = new FormData(formulario);
+      var fechaTexto = "fecha a elegir";
+      if (datos.get("fecha")) {
+        var partes = String(datos.get("fecha")).split("-");
+        var fechaObj = new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2]));
+        fechaTexto = DIAS[fechaObj.getDay()] + " " + fechaObj.getDate() + " de " + MESES[fechaObj.getMonth()];
+      }
+      var personas = datos.get("personas");
+      var plural = String(personas) === "1" ? "persona" : "personas";
+
+      aviso.innerHTML =
+        "<strong>¡Miau! Solicitud enviada 🐾</strong>" +
+        "Gracias, <b>" + String(datos.get("nombre")).split(" ")[0] + "</b>. Hemos anotado una mesa para " +
+        personas + " " + plural + " el <b>" + fechaTexto + "</b> a las <b>" + datos.get("hora") + "</b>. " +
+        "Te confirmamos por correo a <b>" + datos.get("email") + "</b> en menos de 24 h. " +
+        "Mientras, ve practicando el ronroneo.";
+      aviso.setAttribute("data-visible", "true");
+
+      formulario.reset();
+      campoFecha.setAttribute("min", hoyISO);
+      aviso.scrollIntoView({ behavior: movimientoReducido ? "auto" : "smooth", block: "nearest" });
+    });
+
+    /* Al escribir de nuevo en un campo, desaparece su mensaje de error */
+    formulario.addEventListener("input", function (evento) {
+      var contenedor = evento.target.closest(".campo");
+      if (!contenedor) { return; }
+      var error = contenedor.querySelector(".campo__error");
+      if (error && evento.target.checkValidity()) { error.remove(); }
+    });
+
+    /* ---------- Año del footer --------------------------------------------- */
+    document.getElementById("anio").textContent = String(new Date().getFullYear());
+  })();
+  </script>
+</body>
+</html>
