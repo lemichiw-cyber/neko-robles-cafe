@@ -3,9 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Neko Roble Café · Cafetería temática de gatos</title>
+  <title>Neko Roble Café · Cafetería temática de gatos en San Salvador</title>
   <meta name="description" content="Neko Roble Café: cafetería artesanal y refugio felino en la Colonia Escalón, San Salvador. Café salvadoreño de Apaneca, postres horneados cada mañana y seis gatos adoptables que te harán ronronear.">
   <meta name="theme-color" content="#3a281d">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Sakura Enterprise">
+  <meta name="geo.region" content="SV-SV">
+  <meta name="geo.placename" content="Colonia Escalón, San Salvador">
+  <meta name="geo.position" content="13.7048287;-89.2414868">
+  <meta name="ICBM" content="13.7048287, -89.2414868">
+  <link rel="canonical" href="https://lemichiw-cyber.github.io/neko-robles-cafe/">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Open Graph / Twitter: la tarjeta usa img/og-neko-robles.jpg -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Neko Roble Café">
+  <meta property="og:locale" content="es_SV">
+  <meta property="og:title" content="Neko Roble Café · Cafetería temática de gatos en San Salvador">
+  <meta property="og:description" content="Café de especialidad de Apaneca, postres horneados cada mañana y seis gatos adoptables en la Colonia Escalón. Reserva tu pase por WhatsApp.">
+  <meta property="og:url" content="https://lemichiw-cyber.github.io/neko-robles-cafe/">
+  <meta property="og:image" content="https://lemichiw-cyber.github.io/neko-robles-cafe/img/og-neko-robles.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Patita dorada sobre madera con el nombre Neko Roble Café">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Neko Roble Café · Cafetería temática de gatos en San Salvador">
+  <meta name="twitter:description" content="Café de especialidad, postres horneados cada mañana y seis gatos adoptables en la Colonia Escalón.">
+  <meta name="twitter:image" content="https://lemichiw-cyber.github.io/neko-robles-cafe/img/og-neko-robles.jpg">
+
+  <!-- Datos estructurados: Cafetería con horarios, dirección y reservas -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Neko Roble Café",
+    "description": "Cafetería artesanal y refugio felino de paso en la Colonia Escalón, San Salvador. Café de especialidad de Apaneca, postres horneados cada mañana y seis gatos adoptables.",
+    "url": "https://lemichiw-cyber.github.io/neko-robles-cafe/",
+    "image": "https://lemichiw-cyber.github.io/neko-robles-cafe/img/og-neko-robles.jpg",
+    "telephone": "+50379980884",
+    "email": "sakuraenterprise2@gmail.com",
+    "priceRange": "$",
+    "currenciesAccepted": "USD",
+    "paymentAccepted": "Efectivo, Tarjeta",
+    "servesCuisine": ["Café de especialidad", "Postres artesanales"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle del Roble 12 (bajo)",
+      "addressLocality": "Colonia Escalón",
+      "addressRegion": "San Salvador",
+      "addressCountry": "SV"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 13.7048287, "longitude": -89.2414868 },
+    "hasMenu": "https://lemichiw-cyber.github.io/neko-robles-cafe/#menu",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"], "opens": "10:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "10:00", "closes": "22:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday"], "opens": "11:00", "closes": "19:00" }
+    ],
+    "sameAs": [
+      "https://instagram.com/nekoroblecafe",
+      "https://facebook.com/nekoroblecafe",
+      "https://tiktok.com/@nekoroblecafe"
+    ],
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "312" }
+  }
+  </script>
 
   <!-- Favicon: patita dibujada en SVG (sin archivos externos) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a281d'/%3E%3Cellipse cx='16' cy='21' rx='7' ry='5.5' fill='%23e6c884'/%3E%3Cellipse cx='7' cy='12' rx='3' ry='3.6' fill='%23e6c884'/%3E%3Cellipse cx='13' cy='8' rx='2.8' ry='3.4' fill='%23e6c884'/%3E%3Cellipse cx='19' cy='8' rx='2.8' ry='3.4' fill='%23e6c884'/%3E%3Cellipse cx='25' cy='12' rx='3' ry='3.6' fill='%23e6c884'/%3E%3C/svg%3E">
@@ -127,7 +190,11 @@
   /* ---------- 3. Texturas y decoraciones ------------------------------------ */
   .contenedor { width: min(var(--ancho), 92%); margin-inline: auto; }
 
-  .seccion { position: relative; padding: clamp(64px, 9vw, 110px) 0; }
+  .seccion {
+    position: relative; padding: clamp(64px, 9vw, 110px) 0;
+    overflow-x: hidden;   /* fallback */
+    overflow-x: clip;     /* recorta las hojas sin crear scroll */
+  }
 
   /* Fondos por sección */
   .fondo-crema {
@@ -243,6 +310,16 @@
 
   .boton--peq { padding: .55rem 1.1rem; font-size: .95rem; }
 
+  .boton--wa {
+    background: linear-gradient(180deg, #4fae6b, #3d8f55);
+    color: #f4fff6; border-color: var(--madera-900);
+  }
+  .boton--suave-claro {
+    background: rgba(107,127,94,.12); color: var(--musgo-osc);
+    border-color: var(--musgo); box-shadow: 0 4px 0 rgba(77,93,66,.35);
+  }
+  .boton--suave-claro:hover { background: rgba(107,127,94,.22); }
+
   /* Tarjeta artesanal genérica (borde irregular tipo boceto) */
   .tarjeta {
     background: var(--crema);
@@ -344,8 +421,9 @@
   .hero__interior {
     position: relative; z-index: 1;
     display: grid; grid-template-columns: 1.05fr .95fr;
-    gap: clamp(2rem, 5vw, 4rem); align-items: center; width: 100%;
+    gap: clamp(2rem, 5vw, 4rem); align-items: center;
   }
+  .hero__interior > * { min-width: 0; }
 
   .hero__chip {
     display: inline-flex; align-items: center; gap: .5rem;
@@ -586,6 +664,9 @@
   }
   .aviso-exito[data-visible="true"] { display: block; animation: aparecer .5s ease both; }
   .aviso-exito strong { font-family: var(--fuente-titulo); font-size: 1.15rem; display: block; margin-bottom: .3rem; }
+  .aviso-exito__acciones { display: flex; flex-wrap: wrap; gap: .7rem; margin: .9rem 0 .6rem; }
+  .aviso-exito small { display: block; font-size: .84rem; }
+  .aviso-exito a:not(.boton) { color: var(--musgo-osc); font-weight: 700; }
 
   .reservas__aside { display: grid; gap: 1.1rem; }
   .dato-lateral {
@@ -647,12 +728,15 @@
     overflow: hidden; background: #efe3cd;
     box-shadow: var(--sombra-suave);
   }
-  .mapa svg { width: 100%; height: 100%; display: block; }
+  .mapa iframe { width: 100%; height: 100%; min-height: 380px; display: block; border: 0; }
   .mapa__nota {
     position: absolute; left: 12px; bottom: 12px; right: 12px;
     background: rgba(43,29,21,.85); color: var(--crema);
     font-size: .82rem; padding: .55rem .8rem; border-radius: 10px;
+    text-align: center; margin: 0;
   }
+  .mapa__nota a { color: var(--dorado-cl); text-decoration: none; font-weight: 700; }
+  .mapa__nota a:hover { text-decoration: underline; }
 
   /* ---------- 9. Footer ------------------------------------------------------ */
   .pie {
@@ -707,10 +791,16 @@
       position: fixed; top: var(--cabecera-alto); left: 0; right: 0;
       background: var(--madera-900); border-bottom: 2px solid rgba(230,200,132,.35);
       padding: 1rem 6% 1.6rem;
-      transform: translateY(-140%); transition: transform .35s cubic-bezier(.2,.8,.25,1);
+      transform: translateY(-140%);
+      /* Oculto de verdad: si no, el teclado puede enfocar enlaces invisibles */
+      visibility: hidden; pointer-events: none;
+      transition: transform .35s cubic-bezier(.2,.8,.25,1), visibility 0s linear .35s;
       box-shadow: 0 20px 30px -20px #000;
     }
-    .nav[data-abierta="true"] { transform: translateY(0); }
+    .nav[data-abierta="true"] {
+      transform: translateY(0); visibility: visible; pointer-events: auto;
+      transition: transform .35s cubic-bezier(.2,.8,.25,1), visibility 0s linear 0s;
+    }
     .nav__lista { flex-direction: column; align-items: stretch; gap: .2rem; }
     .nav__enlace { display: block; padding: .8rem .4rem; font-size: 1.05rem; border-bottom: 1px dashed rgba(230,200,132,.2); }
     .nav__enlace::after { display: none; }
@@ -843,6 +933,12 @@
     <!-- TikTok -->
     <symbol id="i-tiktok" viewBox="0 0 24 24">
       <path d="M14.2 3c.4 2.4 1.9 3.9 4.3 4.2v2.9c-1.5 0-2.9-.5-4.3-1.4v5.9c0 3.5-2.6 5.9-5.7 5.9S2.8 18 2.8 14.6c0-3.3 2.5-5.8 5.9-5.6v3c-1.6-.3-2.9.7-2.9 2.5 0 1.5 1.1 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3z"/>
+    </symbol>
+
+    <!-- WhatsApp -->
+    <symbol id="i-wa" viewBox="0 0 24 24">
+      <path d="M3.2 20.8l1.5-3.1A8.6 8.6 0 1 1 6.9 19.3l-3.7 1.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M9.1 9.3c.3 2.4 3.2 5.3 5.6 5.6l1-1.4.9.8c.3.1.3.5.1.7-.6.8-1.5 1.1-2.4.9-3-.5-5.9-3.4-6.4-6.4-.2-.9.1-1.8.9-2.4.2-.2.6-.1.7.2l.8.9-1.2 1.1z" fill="currentColor"/>
     </symbol>
 
     <!-- Check -->
@@ -1067,8 +1163,8 @@
               pasar «solo a ver a la gata» y acabaron pidiendo un segundo café.
             </p>
             <p>
-              Hoy Neko Roble Café es <strong>cafetería de especialidad</strong> (tostamos nuestro grano de Café de Apaneca)
-              dos calles de aquí) y <strong>refugio de paso</strong>: cada gatito que ves ronroneando
+              Hoy Neko Roble Café es <strong>cafetería de especialidad</strong> (tostamos nuestro grano de Café de Apaneca
+              a dos calles de aquí) y <strong>refugio de paso</strong>: cada gatito que ves ronroneando
               aquí busca casa, y nosotros solo pedimos que la adopción sea consciente.
             </p>
             <p>
@@ -1428,10 +1524,10 @@
             </div>
             <ul class="carta__lista">
               <li class="plato"><span class="plato__nombre">Pisuñuelas</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$2.80</span><p class="plato__desc">Quesadillas de arroz con azúcar glass y una pizca de canela</p></li>
-              <li class="plato"><span class="plato__nombre">Torta Tres Leches</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$5.20</span><p class="plato__desc">Torta esponjosa con crema pastelera y un toque de canela. Dicen que es "ilegalmente buena"</p></li>
+              <li class="plato"><span class="plato__nombre">Torta Tres Leches</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$5.20</span><p class="plato__desc">Torta esponjosa con crema pastelera y un toque de canela. Dicen que es «ilegalmente buena»</p></li>
               <li class="plato"><span class="plato__nombre">Cola de carmelo</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$4.40</span><p class="plato__desc">Orillas de pan con chocolate caliente y un toque de canela</p></li>
               <li class="plato"><span class="plato__nombre">Bizcocho Michifluff</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$3.90</span><p class="plato__desc">Pan de yema con esencia de vainilla y glaseado blanco</p></li>
-              <li class="plato"><span class="plato__nombre">Tarta de queso Atigrada</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$5.60</span><p class="plato__desc">Con espeado de nuez picada y rallado de coco. Edición limitada los domingos.</p></li>
+              <li class="plato"><span class="plato__nombre">Tarta de queso Atigrada</span><span class="plato__puntos" aria-hidden="true"></span><span class="plato__precio">$5.60</span><p class="plato__desc">Con espolvoreado de nuez picada y rallado de coco. Edición limitada los domingos.</p></li>
             </ul>
           </div>
 
@@ -1527,7 +1623,8 @@
           <h2 class="titulo-seccion" id="titulo-reservas" data-reveal style="--d:1">Guarda tu rincón <em>acurrucado</em></h2>
           <p class="intro-seccion" data-reveal style="--d:2">
             Trabajamos por pases para que los gatos tengan momentos tranquilos.
-            Rellena el formulario y te confirmamos por correo en menos de 24 h (o en 9 vidas, lo que llegue primero).
+            Rellena el formulario y te llevamos a WhatsApp con el mensaje ya escrito: solo tienes que enviarlo.
+            Te confirmamos en menos de 24 h (o en 9 vidas, lo que llegue primero).
           </p>
         </header>
 
@@ -1551,7 +1648,8 @@
             <div class="formulario__fila">
               <div class="campo">
                 <label for="fecha">Fecha <span aria-hidden="true">*</span></label>
-                <input type="date" id="fecha" name="fecha" required>
+                <input type="date" id="fecha" name="fecha" required aria-describedby="ayuda-horario">
+                <span class="campo__ayuda" id="ayuda-horario">Elige una fecha para ver el horario de ese día.</span>
               </div>
               <div class="campo">
                 <label for="hora">Hora de llegada <span aria-hidden="true">*</span></label>
@@ -1593,8 +1691,8 @@
             </div>
 
             <button class="boton boton--oscuro" type="submit">
-              <svg aria-hidden="true"><use href="#i-corazon"></use></svg>
-              Solicitar mi reserva
+              <svg aria-hidden="true"><use href="#i-wa"></use></svg>
+              Preparar mi reserva
             </button>
 
             <!-- Mensaje de confirmación accesible (role=status) -->
@@ -1612,11 +1710,15 @@
             </div>
             <div class="dato-lateral">
               <h3><svg aria-hidden="true"><use href="#i-mail"></use></svg> Confirmación</h3>
-              <p>Te escribimos en menos de 24 h. La reserva no tiene coste; si no puedes venir, avísanos y liberas la mesa para otro ronroneador.</p>
+              <p>Te escribimos por WhatsApp o correo en menos de 24 h. La reserva no tiene coste; si no puedes venir, avísanos y liberas la mesa para otro ronroneador.</p>
             </div>
             <div class="dato-lateral">
               <h3><svg aria-hidden="true"><use href="#i-tel"></use></svg> ¿Prefieres llamar?</h3>
-              <p>Estamos al teléfono de 10:00 a 20:00, salvo que haya una pelota de lana por medio. <a href="tel:+50278734124" style="color:var(--dorado-cl)">910 234 567</a></p>
+              <p>De 10:00 a 20:00, salvo que haya una pelota de lana por medio.
+                <a href="tel:+50379980884" style="color:var(--dorado-cl)">+503 7998 0884</a><br>
+                <a class="boton boton--peq boton--wa" href="https://wa.me/50379980884?text=Hola%2C%20quiero%20preguntar%20por%20una%20mesa%20en%20Neko%20Roble%20Caf%C3%A9" target="_blank" rel="noopener noreferrer" style="margin-top:.7rem">
+                  <svg aria-hidden="true"><use href="#i-wa"></use></svg> Escríbenos por WhatsApp
+                </a></p>
             </div>
           </aside>
         </div>
@@ -1713,15 +1815,19 @@
             <ul class="lista-contacto">
               <li>
                 <svg aria-hidden="true"><use href="#i-pin"></use></svg>
-                <div><strong>Dirección</strong><span>Calle del Roble, 12 (bajo) · Calle del Roble, colonia Escalón · Colonia Escalón, San Salvador</span></div>
+                <div><strong>Dirección</strong><span>Calle del Roble 12 (bajo), Colonia Escalón<br>San Salvador, El Salvador</span></div>
               </li>
               <li>
                 <svg aria-hidden="true"><use href="#i-tel"></use></svg>
-                <div><strong>Teléfono</strong><a href="tel:+50278734124">910 234 567</a></div>
+                <div><strong>Teléfono</strong><a href="tel:+50379980884">+503 7998 0884</a></div>
               </li>
               <li>
                 <svg aria-hidden="true"><use href="#i-mail"></use></svg>
-                <div><strong>Correo</strong><a href="mailto:hola@nekoroblesv.es">hola@nekoroblecafe.es</a></div>
+                <div><strong>Correo</strong><a href="mailto:sakuraenterprise2@gmail.com">sakuraenterprise2@gmail.com</a></div>
+              </li>
+              <li>
+                <svg aria-hidden="true"><use href="#i-wa"></use></svg>
+                <div><strong>WhatsApp</strong><a href="https://wa.me/50379980884?text=Hola%2C%20quiero%20preguntar%20por%20una%20mesa%20en%20Neko%20Roble%20Caf%C3%A9" target="_blank" rel="noopener noreferrer">+503 7998 0884 · responder en minutos</a></div>
               </li>
             </ul>
 
@@ -1749,57 +1855,14 @@
           </div>
 
           <div class="mapa" data-reveal="derecha">
-            <!-- MAPA INTERACTIVO: sustituye todo este <svg> por un iframe real, p. ej.
-                 <iframe title="Ubicación de Neko Roble Café en Google Maps"
-                         src="https://www.google.com/maps/embed?pb=...&output=embed"
-                         width="100%" height="340" style="border:0" loading="lazy"
-                         referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-                        <svg viewBox="0 0 500 380" role="img" aria-label="Mapa ilustrado de la colonia Escalón, San Salvador">
-              <rect width="500" height="380" fill="#e3d0c0"/>
-              <!-- manzanas residenciales -->
-              <g fill="#d6c5b9" stroke="#a7907e" stroke-width="2">
-                <rect x="26" y="26" width="130" height="106" rx="6"/>
-                <rect x="186" y="26" width="110" height="106" rx="6"/>
-                <rect x="326" y="26" width="110" height="106" rx="6"/>
-                <rect x="26" y="162" width="130" height="142" rx="6"/>
-                <rect x="186" y="162" width="110" height="142" rx="6"/>
-                <rect x="326" y="162" width="110" height="142" rx="6"/>
-              </g>
-              <!-- Parque Cuscatlán -->
-              <g fill="#76a45e">
-                <circle cx="250" cy="60" r="18"/>
-                <circle cx="270" cy="88" r="14"/>
-                <circle cx="290" cy="55" r="12"/>
-                <circle cx="310" cy="85" r="16"/>
-                <text x="250" y="122" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#3d2c22">Parque Cuscatlán</text>
-              </g>
-              <!-- Monumento a la Constitución / Monumento al Divino Salvador -->
-              <g transform="translate(400 60)">
-                <polygon points="0,0 25,0 30,30 0,30" fill="#e74c3c"/>
-                <text x="12" y="18" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#fff">M C</text>
-              </g>
-              <!-- calles -->
-              <g stroke="#d5b6a1" stroke-width="18" stroke-linecap="round">
-                <path d="M0 168h500"/><path d="M190 0v380"/><path d="M342 0v380"/>
-              </g>
-              <g stroke="#d5b6a1" stroke-width="2" stroke-dasharray="8 6">
-                <path d="M0 168h500"/><path d="M190 0v380"/>
-              </g>
-              <text x="20" y="160" font-family="Georgia, serif" font-size="12" fill="#5a3d27">Calle del Roble</text>
-              <text x="200" y="30" font-family="Georgia, serif" font-size="12" fill="#5a3d27">Av. Juan Pablo II</text>
-              <!-- Metro (referencia simbólica) -->
-              <g transform="translate(40 300)">
-                <circle r="14" fill="#e74c3c"/>
-                <text y="5" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#fff6ea">T</text>
-                <text x="24" y="3" font-family="Georgia, serif" font-size="11" fill="#3d2c22">Trenque</text>
-              </g>
-              <!-- Marca de la cafetería -->
-              <g transform="translate(168 158)">
-                <rect x="-40" y="20" width="110" height="22" rx="5" fill="#76a45e"/>
-                <text x="20" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#3d2c22">Neko Roble Café</text>
-              </g>
-            </svg>
-            <p class="mapa__nota">Mapa ilustrado de referencia · sustituir por Google Maps embebido (ver comentario en el código)</p>
+            <iframe
+              title="Mapa de Colonia Escalón, San Salvador, con la ubicación de Neko Roble Café"
+              src="https://www.google.com/maps?q=13.7048287%2C-89.2414868&amp;z=16&amp;output=embed"
+              width="100%" height="380" style="border:0" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <p class="mapa__nota">
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Calle%20del%20Roble%2012%2C%20Colonia%20Escal%C3%B3n%2C%20San%20Salvador%2C%20El%20Salvador" target="_blank" rel="noopener noreferrer">Abrir direcciones en Google Maps ↗</a>
+            </p>
           </div>
         </div>
       </div>
@@ -1833,8 +1896,8 @@
           <ul>
             <li><a href="#contacto">Calle del Roble, 12 · San Salvador</a></li>
             <li><a href="#contacto">Horarios y cómo llegar</a></li>
-            <li><a href="tel:+50278734124">910 234 567</a></li>
-            <li><a href="mailto:hola@nekoroblesv.es">hola@nekoroblecafe.es</a></li>
+            <li><a href="tel:+50379980884">+503 7998 0884</a></li>
+            <li><a href="mailto:sakuraenterprise2@gmail.com">sakuraenterprise2@gmail.com</a></li>
           </ul>
         </nav>
 
@@ -1883,6 +1946,14 @@
     "use strict";
 
     var movimientoReducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* Datos de contacto reales del sitio. Si algún día cambian, basta con
+       editar estas tres líneas: se usan en el formulario, el mapa y los enlaces. */
+    var CONTACTO = {
+      whatsapp: "50379980884",     /* solo dígitos, con prefijo de país */
+      telefono: "+50379980884",
+      email: "sakuraenterprise2@gmail.com"
+    };
 
     /* ---------- 1. Menú móvil ---------------------------------------------- */
     var botonMenu = document.getElementById("boton-menu");
@@ -2033,6 +2104,12 @@
     }
 
     /* ---------- 6. Formulario de reservas ---------------------------------- */
+
+    function escapeHtml(texto) {
+      return String(texto).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
     var formulario = document.getElementById("formulario-reserva");
     var aviso = document.getElementById("aviso-exito");
     var campoFecha = document.getElementById("fecha");
@@ -2044,6 +2121,57 @@
 
     var MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
     var DIAS = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+
+    /* Horario real del café por día de la semana (null = cerrado). */
+    var HORARIOS = {
+      0: { abre: "11:00", cierra: "19:00" }, /* domingo */
+      1: null,                              /* lunes: cerrado */
+      2: { abre: "10:00", cierra: "20:00" },
+      3: { abre: "10:00", cierra: "20:00" },
+      4: { abre: "10:00", cierra: "20:00" },
+      5: { abre: "10:00", cierra: "22:00" },
+      6: { abre: "10:00", cierra: "22:00" }
+    };
+    /* No aceptamos reservas con más de 90 días de antelación. */
+    var maxFecha = new Date(hoy.getTime() + 90 * 86400000);
+    campoFecha.setAttribute("max", new Date(maxFecha.getTime() - maxFecha.getTimezoneOffset() * 60000).toISOString().slice(0, 10));
+
+    var ayudaHorario = document.getElementById("ayuda-horario");
+    var mensajeAyudaHorario = "";
+
+    function diaDeFecha(valor) {
+      var partes = String(valor).split("-");
+      return new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2])).getDay();
+    }
+
+    function actualizarAyudaHorario(valor) {
+      if (!ayudaHorario) { return; }
+      if (!valor) {
+        mensajeAyudaHorario = "";
+        ayudaHorario.textContent = "Elige una fecha para ver el horario de ese día.";
+        ayudaHorario.style.color = "";
+        return;
+      }
+      var dia = diaDeFecha(valor);
+      var horario = HORARIOS[dia];
+      if (!horario) {
+        mensajeAyudaHorario = "Los lunes estamos cerrados (día oficial de baños, cortinas y siestas).";
+        ayudaHorario.textContent = mensajeAyudaHorario + " Elige otro día.";
+        ayudaHorario.style.color = "#9e4a29";
+        ayudaHorario.style.fontWeight = "700";
+      } else {
+        var nombre = DIAS[dia];
+        mensajeAyudaHorario = "";
+        ayudaHorario.textContent = nombre.charAt(0).toUpperCase() + nombre.slice(1) + ": de " + horario.abre + " a " + horario.cierra + ". Última entrada 45 min antes del cierre.";
+        ayudaHorario.style.color = "";
+        ayudaHorario.style.fontWeight = "";
+      }
+    }
+
+    campoFecha.addEventListener("change", function () {
+      actualizarAyudaHorario(campoFecha.value);
+      campoFecha.setCustomValidity("");
+    });
 
     function mensajeAmigable(campo) {
       if (campo.validity.valueMissing) {
@@ -2060,6 +2188,7 @@
       if (campo.validity.rangeOverflow) {
         return "Para grupos de más de 8 personas, escríbenos y lo montamos.";
       }
+      if (campo.validity.customError) { return campo.validationMessage; }
       if (campo.validity.badInput) { return "Revisa el formato de este campo."; }
       return "Revisa este campo, porfa.";
     }
@@ -2076,8 +2205,15 @@
       campos.forEach(function (campo) {
         campo.setCustomValidity("");
         if (campo.type === "checkbox" || !campo.willValidate) { return; }
-        if (campo === campoFecha && campo.value && campo.value < hoyISO) {
-          campo.setCustomValidity("Esa fecha ya pasó: los gatos viven el presente.");
+        if (campo === campoFecha && campo.value) {
+          var diaSel = diaDeFecha(campo.value);
+          if (campo.value < hoyISO) {
+            campo.setCustomValidity("Esa fecha ya pasó: los gatos viven el presente.");
+          } else if (!HORARIOS[diaSel]) {
+            campo.setCustomValidity("Los lunes estamos cerrados (día de baños y cortinas). Elige otro día.");
+          } else if (campo.value > campo.getAttribute("max")) {
+            campo.setCustomValidity("A más de 90 días no podemos prometer sillas libres: escríbenos y lo vemos.");
+          }
         }
       });
 
@@ -2110,27 +2246,61 @@
         return;
       }
 
-      /* Resumen de la reserva (aquí conectarías tu backend) */
+      /* Resumen de la reserva: se envía de verdad por WhatsApp o correo */
       var datos = new FormData(formulario);
       var fechaTexto = "fecha a elegir";
       if (datos.get("fecha")) {
-        var partes = String(datos.get("fecha")).split("-");
-        var fechaObj = new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2]));
+        var fechaObj = new Date(Number(String(datos.get("fecha")).split("-")[0]),
+                                Number(String(datos.get("fecha")).split("-")[1]) - 1,
+                                Number(String(datos.get("fecha")).split("-")[2]));
         fechaTexto = DIAS[fechaObj.getDay()] + " " + fechaObj.getDate() + " de " + MESES[fechaObj.getMonth()];
       }
       var personas = datos.get("personas");
       var plural = String(personas) === "1" ? "persona" : "personas";
+      var selectOcasion = document.getElementById("ocasion");
+      var ocasionTexto = (selectOcasion && selectOcasion.selectedOptions[0])
+        ? selectOcasion.selectedOptions[0].textContent.trim() : "";
+      var notas = String(datos.get("notas") || "").trim();
+      var hora = String(datos.get("hora") || "");
+
+      var mensaje =
+        "Hola, Neko Roble Café 🐾 Quiero reservar una mesa." + "\n\n" +
+        "Nombre: " + datos.get("nombre") + "\n" +
+        "Correo: " + datos.get("email") + "\n" +
+        "Fecha: " + fechaTexto + "\n" +
+        "Hora: " + hora + "\n" +
+        "Personas: " + personas + "\n" +
+        (ocasionTexto ? "Ocasión: " + ocasionTexto + "\n" : "") +
+        (notas ? "Notas: " + notas + "\n" : "") +
+        "\nHe leído las reglas de la casa (voz bajita y manos limpias).";
+
+      var asunto = "Reserva " + fechaTexto + " · " + personas + " " + plural;
+      var enlaceWa = "https://wa.me/" + CONTACTO.whatsapp + "?text=" + encodeURIComponent(mensaje);
+      var enlaceMail = "mailto:" + CONTACTO.email +
+        "?subject=" + encodeURIComponent(asunto) +
+        "&body=" + encodeURIComponent(mensaje);
 
       aviso.innerHTML =
-        "<strong>¡Miau! Solicitud enviada 🐾</strong>" +
-        "Gracias, <b>" + String(datos.get("nombre")).split(" ")[0] + "</b>. Hemos anotado una mesa para " +
-        personas + " " + plural + " el <b>" + fechaTexto + "</b> a las <b>" + datos.get("hora") + "</b>. " +
-        "Te confirmamos por correo a <b>" + datos.get("email") + "</b> en menos de 24 h. " +
-        "Mientras, ve practicando el ronroneo.";
+        "<strong>¡Miau! Tu solicitud está lista 🐾</strong>" +
+        "Gracias, <b>" + escapeHtml(String(datos.get("nombre")).split(" ")[0]) + "</b>. " +
+        "Hemos preparado la solicitud para <b>" + escapeHtml(String(personas)) + " " + plural +
+        "</b> el <b>" + fechaTexto + "</b> a las <b>" + escapeHtml(hora) + "</b>. Elige cómo enviarla:" +
+        '<span class="aviso-exito__acciones">' +
+          '<a class="boton boton--peq boton--wa" id="btn-whatsapp" href="' + enlaceWa + '" target="_blank" rel="noopener noreferrer">' +
+            '<svg aria-hidden="true"><use href="#i-wa"></use></svg> Enviar por WhatsApp</a>' +
+          '<a class="boton boton--peq boton--suave-claro" id="btn-correo" href="' + enlaceMail + '">' +
+            '<svg aria-hidden="true"><use href="#i-mail"></use></svg> Enviar por correo</a>' +
+        "</span>" +
+        "<small>Al enviarla te confirmamos en menos de 24 h. ¿Prefieres hablar? Llámanos al " +
+        '<a href="tel:' + CONTACTO.telefono + '">+503 7998 0884</a>.</small>';
       aviso.setAttribute("data-visible", "true");
+
+      /* Abrimos WhatsApp con el mensaje ya escrito: el envío real lo haces tú. */
+      try { window.open(enlaceWa, "_blank", "noopener"); } catch (e) { /* popup bloqueado: quedan los botones */ }
 
       formulario.reset();
       campoFecha.setAttribute("min", hoyISO);
+      actualizarAyudaHorario("");
       aviso.scrollIntoView({ behavior: movimientoReducido ? "auto" : "smooth", block: "nearest" });
     });
 
